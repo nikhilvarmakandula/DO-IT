@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Engineered Prompts</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Aptos+Display:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: SFMono-Regular;
+            line-height: 1.6;
+            color: #333;
+            background-color:#fff;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Header */
+        header {
+            background:rgba(66, 66, 66, .9);
+            color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 0.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 700;
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        .logo span {
+            color:#fff;
+        }
+        .logo .infinity {
+            color: maroon;
+            margin: 0 0.2rem;
+            font-size: 1.7rem;
+            line-height: 1;
+            vertical-align: middle;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+        }
+        nav ul li a {
+            color:#fff;
+            font-weight: 800;
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover {
+            color: #EAEAEA;
+        }
+
+        /* Hero Section for Login */
+        .hero {
+            background:#EAEAEA;
+            color: #333;
+            text-align: center;
+            padding: 0.5rem 5%;
+        }
+        .hero h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 1000px;
+            margin: 0 auto 1.5rem;
+            line-height: 1.8;
+            text-align: left;
+        }
+
+        /* Login Form Section */
+        .login-form {
+            background: white;
+            border-radius: 50px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 3rem;
+            max-width: 700px;
+            margin: 2rem auto;
+            width: 100%;
+        }
+        .login-form h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 10px;
+        }
+        .form-group label {
+            font-weight:900;
+            margin-bottom: 0.5rem;
+            display: block;
+            font-size: 1.1rem;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;;
+        }
+        .form-group input:focus {
+            border-color: #10b981;
+            box-shadow: 0 0 5px rgba(16, 185, 129, 0.5);
+        }
+        .login-form button {
+            background:#4a4a4a;
+            font-family: SFMono-Regular;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: 500px;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+        }
+        .login-form button:hover {
+            background: #1d1c1c;
+        }
+
+        .fail-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            background:rgba(66,66,66,.95);
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: auto;
+        }
+
+        /* Vision Section */
+        .vision-section {
+            background-color: #fff;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: -1rem;
+        }
+        .vision-section p {
+            font-size: 1.2rem;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .vision-section b {
+          color:#5890b5;
+        }
+
+        /* Additional Links */
+        .additional-links {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+        .additional-links a {
+            color:#4a4a4a;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+        .additional-links a:hover {
+            color:#1d1c1c;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            AI Prompts <span class="infinity">⚡</span><span>Engineered</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">HOME</a></li>
+                <li><a href="login.html">LOGIN</a></li>
+                <li><a href="signup.html">SIGN UP</a></li>
+                <li><a href="/logout">SIGN OUT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Vision Section -->
+    <section class="vision-section">
+        <p><b>OUR VISION:</b> At the forefront of AI, we firmly believe Engineered Prompts will play a vital role. This platform is an honest attempt to build an Engineered prompt warehouse to achieve PROMPT DRIVEN, Business Critical, NO-CODE/LOW-CODE Solutions.</p>
+    </section>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <p>Experience the power of Engineered Prompts. Securely login to access your personalized prompts and join the innovative AI community.</p>
+    </section>
+
+    <!-- Login Form -->
+    <div class="login-form">
+        <h2>Login (Optional for now)</h2>
+        <form action="/login" method="POST">
+            <div class="form-group">
+                <input type="email" id="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" id="password" name="password" placeholder="Password" required>
+            </div>
+            <br>
+            <label>
+                <input type="checkbox" id="showPassword" onclick="togglePasswordVisibility()"> Show Password
+            </label>
+            <br>
+            {% if fail_message %}
+            <div class="fail-message" id="error-message">{{ fail_message }}</div>
+            {% endif %}
+            <button type="submit">Login</button>
+        </form>
+    </div>
+    
+
+    <!-- Additional Links Section -->
+    <div class="additional-links">
+        <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p style="font-family: Aptos;">&copy; 2024 ENGINEERED PROMPT. All rights reserved.</p>
+    </footer>
+
+    <!-- for Show Password -->
+    <script>
+        function togglePasswordVisibility() {
+            const passwordField = document.getElementById('password');
+            const showPasswordCheckbox = document.getElementById('showPassword');
+            if (showPasswordCheckbox.checked) {
+                passwordField.type = 'text';
+            } else {
+                passwordField.type = 'password';
+            }
+        }
+    </script>
+
+</body>
+</html>

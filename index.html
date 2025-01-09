@@ -1,0 +1,407 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineered Prompts - Discover, Share, and Innovate</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Aptos+Display:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <style>
+        .chatgpt-link {
+            font-size: 1rem;
+            color: #10b981;
+            text-decoration: none;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+
+        .chatgpt-link:hover {
+            text-decoration: underline;
+        }
+
+        .copy-button-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        table img {
+            max-width: 100px;
+            height: auto;
+            border-radius: 50px;
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            AI Prompts <span class="gear">⚡</span><span>Engineered</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">HOME</a></li>
+                <li><a href="login.html">LOGIN</a></li>
+                <li><a href="signup.html">SIGN UP</a></li>
+                <li><a href="/logout">SIGN OUT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Vision Section -->
+    <section class="vision-section">
+        <p><b>OUR VISION:</b> At the forefront of AI, we firmly believe Engineered Prompts will play a vital role. This platform is an honest attempt to build an Engineered prompt warehouse to achieve PROMPT DRIVEN, Business Critical, NO-CODE/LOW-CODE Solutions.</p>
+    </section>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Discover and Share "Engineered" AI Prompts</h1>
+        <p>It is a thrilling experience to Engineer a Business and Machine critical prompt! We have an opportunity to Experience The thrill each time we share an Engineered prompt. Collaborate and innovate with the community!</p>
+        <a href="login.html"><button><b>Explore Our Prompts</b></button></a>
+    </section>
+    
+      
+
+  <!-- Main Content -->
+  <main class="main" style="display: flex; flex-direction: column; gap: 2rem;">
+    <!--share your prompt button-->
+    <button id="toggle-share-btn" style="
+        margin: 1rem auto;
+        padding: 0.75rem 1.5rem;
+        background: #4a4a4a;
+        color: #fff;
+        border: none;
+        border-radius: 50px;
+        font-size:1.2rem;
+        font-weight: 400;
+        font-family: inherit;
+        cursor: pointer;
+        transition: background 0.3s;
+    " onmouseover="this.style.background='#1d1c1c'" 
+      onmouseout="this.style.background='#4a4a4a'">
+        Share Your Prompt
+    </button>
+</main>
+
+        <!-- Share prompt Section -->
+        <section class="share" style="width: 100%;">
+            <h2>Share Your Prompt</h2>
+            <form action="/submit_prompt" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="prompt-purpose">Prompt Purpose:</label>
+                    <textarea id="prompt-purpose" name="prompt_purpose" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="engineered-prompt">Engineered Prompt:</label>
+                    <textarea id="engineered-prompt" name="engineered_prompt" required></textarea>
+                
+                </div>
+                <div class="form-group">
+                    <label for="prompt-type">Prompt Type:</label>
+                    <select id="prompt-type" name="prompt_type" required>
+                        <option value="low-code-no-code" selected>Low Code/No Code</option>
+                        <option value="image-reference">Image Reference</option>
+                        <option value="video-reference">Video Reference</option>
+                    </select>
+                </div>
+                <div class="form-group" id="upload-section" style="display: none;">
+                    <label id="upload-label" for="file-upload"></label>
+                    <input type="file" id="file-upload" name="file_upload" accept="" style="display: none;">
+                </div>
+                <!--inside prompt share button-->
+                <button style="
+                    background: #1d1c1c;
+                    color: white;
+                    border: none;
+                    border-radius: 40px;
+                    padding: 0.75rem 1.5rem;
+                    font-family: inherit;
+                    font-size: 1rem;
+                    font-weight:300;
+                    cursor: pointer;
+                    transition: background 0.3s;">
+                    Share Prompt
+                </button>
+            </form>
+        </section>
+        
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const promptTypeSelect = document.getElementById('prompt-type');
+                const uploadSection = document.getElementById('upload-section');
+                const uploadLabel = document.getElementById('upload-label');
+                const fileUpload = document.getElementById('file-upload');
+        
+                promptTypeSelect.addEventListener('change', () => {
+                    const selectedType = promptTypeSelect.value;
+        
+                    if (selectedType === 'image-reference') {
+                        uploadSection.style.display = 'block';
+                        uploadLabel.textContent = 'Upload Image:';
+                        fileUpload.style.display = 'block';
+                        fileUpload.setAttribute('accept', 'image/*');
+                    } else if (selectedType === 'video-reference') {
+                        uploadSection.style.display = 'block';
+                        uploadLabel.textContent = 'Upload Video:';
+                        fileUpload.style.display = 'block';
+                        fileUpload.setAttribute('accept', 'video/*');
+                    } else {
+                        uploadSection.style.display = 'none';
+                        fileUpload.value = ''; // Clear the file input
+                    }
+                });
+            });
+        </script>
+           <!--table-->
+            <div class="warehouse-prompt-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>PROMPT PURPOSE</th>
+                            <th>ENGINEERED PROMPT</th>
+                            <th>PROMPT TYPE</th>
+                            <th>IMAGE/VIDEO REFERENCE</th>
+                            <th>LIKES</th>
+                            <th>CHATGPT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for prompt in prompts %}
+                        <tr>
+                            <td>{{ prompt.Prompt_Purpose }}</td>
+                            <td>{{ prompt.Engineered_Prompt }}</td>
+                            <td>{{ prompt.Prompt_Type }}</td>
+                            <td>
+                             {% if prompt.Prompt_Type in ['image-reference', 'video-reference'] %}
+                             <a href="{{ prompt.file_url }}" target="_blank">View File</a>
+                             {% else %}
+                              N/A
+                              {% endif %}
+                            </td> 
+                            <td>
+                                <button class="like-button" data-prompt-id="{{ prompt.id }}">
+                                    <div class="like-icon">👍</div>
+                                    <div class="like-text">Like (<span class="like-count">{{ prompt.number_of_likes }}</span>)</div>
+                                </button>
+                            </td>
+                            <td>
+                                <a href="https://chat.openai.com/?prompt={{ prompt.Engineered_Prompt }}" target="_blank" class="apply-in-chatgpt-link">Apply in ChatGPT</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <button id="feedback-button">Feedback !</button>
+    <div id="feedback-form" style="display: none;">
+        <h2>Leave Us Your Feedback</h2>
+        <form action="/submit-feedback" method="POST">
+            <textarea name="feedback" rows="5" cols="40" placeholder="Your feedback..."></textarea><br>
+            <input type="email" name="email" placeholder="Your email (optional)" /><br>
+            <button type="submit">Submit Feedback</button>
+        </form>
+    </div>
+    <section id="resource-center">
+        <div class="container">
+            <h2>Information Center</h2>
+            <p>Explore guides, tutorials, and resources to get the most out of EngineeredPrompt.</p>
+            <div class="resource-list">
+                <!-- Resource 1 -->
+                <div class="resource-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
+                        <circle cx="25" cy="25" r="20" fill="#1E90FF" filter="url(#f1)"/>
+                        <defs>
+                            <filter id="f1" x="-50%" y="-50%" width="200%" height="200%">
+                                <feDropShadow dx="4" dy="4" stdDeviation="2" flood-color="#000000" flood-opacity="0.5"/>
+                            </filter>
+                        </defs>
+                    </svg>
+                    <h3>Our goal is to create a transformative prompt that serves as the foundation for a powerful product, driving innovation and delivering value to users.</h3>
+                </div>
+    
+                <!-- Resource 2 -->
+                <div class="resource-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
+                        <circle cx="25" cy="25" r="20" fill="#1E90FF" filter="url(#f1)"/>
+                        <defs>
+                    <h3>An expertly engineered prompt can achieve what weeks of coding cannot.</h3>
+                </div>
+    
+                <!-- Resource 3 -->
+                <div class="resource-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
+                        <circle cx="25" cy="25" r="20" fill="#1E90FF" filter="url(#f1)"/>
+                        <defs>
+                    <h3>Transform your idea into a product with an AI-crafted prompt—no extensive technical expertise needed, just your passion for innovation!</h3>
+                </div>               
+            
+    </section>
+    <section>
+    </div>
+    <!-- Video Tutorial Section -->
+    <div class="video-container">
+    <h2>Watch and Learn</h2>
+    <p>Explore our curated video tutorials for advanced learning.</p>
+    <video id="tutorialVideo" controls>
+        <source src="your-video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>                    
+    </div>
+    </section>
+    
+        
+    </div>
+</section>
+<!-- footer style1-->    
+<footer class="footer-style-1">
+   One Stop promptsol.
+</footer>
+
+<footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>Company</h3>
+        <ul>
+          <li><a href="http://127.0.0.1:5000">About Us</a></li>
+          <li><a href="#leadership">Leadership Team</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#careers">Work with Us</a></li>
+          <li><a href="#newsroom">Newsroom</a></li>
+          <li><a href="#cares">ENGINEERED PROMPT</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Resources</h3>
+        <ul>
+          <li><a href="#requirements">System Requirements</a></li>
+          <li><a href="#privacy">Privacy Policy</a></li>
+          <li><a href="#terms">Terms of Use</a></li>
+          <li><a href="#accessibility">Accessibility Assistance</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Connect</h3>
+        <ul>
+          <li><a href="#contact">Contact Us</a></li>
+          <li><a href="#forums">Forums</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Follow Us</h3>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/profile.php?id=61569854413616"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.linkedin.com/in/engineeredprompt-engineeredprompt-577a13342/"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://twitter.com/engineeredpromhttps://twitter.com/engineeredpromp"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=engineeredprompt@gmail.com" target="_blank">
+          <i class="fas fa-envelope"></i>
+        </a>
+    </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Footer 2 -->
+<footer class="footer-style-2">
+    <p>&copy; 2024 ENGINEERED PROMPT. All rights reserved.</p>
+</footer>
+  
+
+       <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Ensure the Share section is hidden initially
+        const shareSection = document.querySelector('.share');
+        const toggleButton = document.querySelector('#toggle-share-btn');
+        const promptsSection = document.querySelector('.prompts');
+
+        shareSection.style.display = 'none'; // Hide Share section initially
+
+        // Toggle Share Section functionality
+        toggleButton.addEventListener('click', () => {
+            if (shareSection.style.display === 'none') {
+                shareSection.style.display = 'block';
+                toggleButton.textContent = 'Hide Share Your Prompt';
+                promptsSection.style.marginTop = '2rem';
+            } else {
+                shareSection.style.display = 'none';
+                toggleButton.textContent = 'Share Your Prompt';
+                promptsSection.style.marginTop = '0';
+            }
+        });
+
+        // Existing Like functionality
+        const likeButtons = document.querySelectorAll('.like-button');
+        const currentUserId = 'USER_ID_HERE'; // Replace this with the actual user ID (e.g., from session or backend)
+
+        likeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const promptId = button.getAttribute('data-prompt-id');
+
+                fetch('/like_prompt', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt_id: promptId, user_id: currentUserId })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const likeCount = button.querySelector('.like-count');
+                        likeCount.textContent = data.updated_likes;
+                    }
+                })
+                .catch(err => console.error('Error:', err));
+            });
+        });
+
+        // Feedback form toggle functionality
+        const feedbackButton = document.getElementById('feedback-button');
+        const feedbackForm = document.getElementById('feedback-form');
+        feedbackButton.addEventListener('click', () => {
+            feedbackForm.style.display = feedbackForm.style.display === 'none' || feedbackForm.style.display === '' ? 'block' : 'none';
+        });
+    });
+</script>
+<script>
+    // Log downloads for analytics (optional)
+    document.querySelectorAll('.resource-card .btn').forEach((button) => {
+        button.addEventListener('click', () => {
+            console.log(`Resource downloaded: ${button.getAttribute('href')}`);
+        });
+    });
+</script>
+<script>
+    // Interactive Tutorial using Intro.js
+    document.getElementById("startTutorial").addEventListener("click", () => {
+        introJs().setOptions({
+            steps: [
+                { intro: "Welcome to the tutorial! Learn how to interact with prompts." },
+                { element: '#startTutorial', intro: "Click here to start the interactive journey." }
+            ]
+        }).start();
+    });
+
+    // Video Tutorial with Interactive Quiz
+    const video = document.getElementById("tutorialVideo");
+    video.addEventListener("timeupdate", () => {
+        if (video.currentTime > 10 && video.currentTime < 15) {
+            document.getElementById("quiz").style.display = "block";
+            video.pause();
+        }
+    });
+
+    function checkAnswer(answer) {
+        const message = answer === '1' 
+            ? "Correct! Prompt engineering optimizes AI prompts."
+            : "Incorrect. Try again!";
+        alert(message);
+        document.getElementById("quiz").style.display = "none";
+        video.play();
+    }
+</script>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Engineered Prompts</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Aptos+Display:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            
+            line-height: 1.6;
+            color: #333;
+            background-color:#fff;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Header */
+        header {
+            background:rgba(66,66,66,.9);
+            color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 0.5rem 5%;;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 700;
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        .logo span {
+            color:#fff;
+        }
+        .logo .infinity {
+            color: maroon;
+            margin: 0 0.2rem;
+            font-size: 1.7rem;
+            line-height: 1; 
+            vertical-align: middle; 
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+        nav ul li a {
+            color:#fff;
+            font-weight:800;
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover {
+            color:#EAEAEA;
+        }
+
+        /* Vision Section */
+        .vision-section {
+            background-color:#fff;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: -1rem;
+        }
+        .vision-section p {
+            font-size: 1.2rem;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .vision-section b {
+         color:#5890b5;
+        }
+
+        .hero {
+            background:#EAEAEA;
+            color:#333;
+            text-align: center;
+            padding: 0.5rem 5%;
+        }
+        .hero h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 1000px;
+            margin: 0 auto 1.5rem;
+            line-height: 1.8;
+            text-align: left;
+        }
+        /* Sign Up Form Styles */
+        .container {
+            display: flex;
+            justify-content: center;
+            font-family: SFMono-Regular;
+            align-items: center;
+            min-height: 50vh;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            box-sizing: border-box;
+        }
+        .signup-form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: #fff;
+            font-family: SFMono-Regular;
+            border-radius: 50px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .signup-form-heading {
+            font-size: 30px;
+            font-weight:bolder;
+            margin-bottom:10px;
+            text-align: center;
+        }
+        .signup-form input[type="email"],
+        .signup-form input[type="password"],
+        .signup-form input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .signup-form button {
+            background-color:#4a4a4a;
+            color: #fff;
+            padding: 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            text-transform: uppercase;
+            
+        }
+        .signup-form button:hover {
+            background: #1d1c1c;
+        }
+        .signup-form-footer {
+            margin-top: 18px;
+            text-align: center;
+        }
+        .signup-form-footer a {
+            color: #1d1c1c;
+            text-decoration: none;
+        }
+        .fail-message {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* Trailer Section (Exactly like the Login Page) */
+        .trailer {
+            background-color:rgba(66,66,66,.95);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .trailer h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .trailer p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        .trailer a {
+            background-color:#1384fe;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .signup-form-container {
+                max-width: 80%;
+            }
+        }
+        @media (max-width: 570px) {
+            .signup-form-container {
+                max-width: 90%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            AI Prompts <span class="infinity">⚡</span><span>Engineered</span>
+        </div>
+        <div class="background-container"></div>
+        <nav>
+            <ul>
+                <li><a href="login.html">LOGIN</a></li>
+                <li><a href="signup.html">SIGN UP</a></li>
+                <li><a href="/logout">SIGN OUT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Vision Section -->
+    <section class="vision-section">
+        <p><b>OUR VISION:</b> At the forefront of AI, we firmly believe Engineered Prompts will play a vital role. This platform is an honest attempt to build an Engineered prompt warehouse to achieve PROMPT DRIVEN, Business Critical, NO-CODE/LOW-CODE Solutions.</p>
+    </section>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <p>Experience the power of Engineered Prompts. Sign up to join the innovative AI community and access personalized, cutting-edge solutions that empower your creativity.</p>
+    </section>
+
+    <!-- Sign Up Form -->
+    <div class="container">
+        <div class="signup-form-container">
+            <h2 class="signup-form-heading">Sign Up</h2>
+            <form class="signup-form" action="/signup-submit" method="POST" onsubmit="return validateForm()">
+                <input type="text" name="full_name" placeholder="Full Name" required>
+                <input type="email" name="email" placeholder="Email Address" required>
+                <input type="password" name="password" id="password" placeholder="Password" required>
+                <input type="password" name="confirm_password" id="confirm_password" placeholder="Re-enter Password" required>
+                <!---- show password checkbox ---->
+                <label>
+                    <input type="checkbox" id="show_password" onclick="togglePasswordVisibility()"> Show password
+                </label>
+                <div class="fail-message" id="error-message">
+                    {% if fail_message %}
+                        <div>{{ fail_message }}</div>
+                    {% endif %}
+                </div>
+                <button type="submit">Sign Up</button>
+            </form>
+            <div class="signup-form-footer">
+                <p>Already have an account? <a href="login.html">Login</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Trailer Section -->
+    <section class="trailer">
+        <h2>Join Us Today!</h2>
+        <p>Become a part of our growing community and get access to exclusive AI-powered Engineered Prompts.</p>
+        <a href="signup.html">Sign Up Now</a>
+    </section>
+
+    <!-- JavaScript to Show/Hide Password -->
+    <script>
+        function togglePasswordVisibility() {
+            const passwordField = document.getElementById('password');
+            const confirmPasswordField = document.getElementById('confirm_password');
+            const showPasswordCheckbox = document.getElementById('show_password');
+
+            if (showPasswordCheckbox.checked) {
+                passwordField.type = 'text';
+                confirmPasswordField.type = 'text';
+            } else {
+                passwordField.type = 'password';
+                confirmPasswordField.type = 'password';
+            }
+        }
+
+        function validateForm() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm_password').value;
+            const errorMessage = document.getElementById('error-message');
+
+            // Check for password length and complexity
+            const uppercaseRegex = /[A-Z]/;
+            const specialCharRegex = /[!@#$%^&*()_+{}\[\]:;<>,.?~\-\/\\]/;
+
+            if (password.length < 8 || !uppercaseRegex.test(password) || !specialCharRegex.test(password)) {
+                errorMessage.innerHTML = 'Password must be at least 8 characters long and contain an uppercase letter and a special character.';
+                return false;
+            }
+
+            // Check if passwords match
+            if (password !== confirmPassword) {
+                errorMessage.innerHTML = 'Passwords do not match.';
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>
