@@ -87,49 +87,64 @@
     </button>
 </main>
 
-        <!-- Share prompt Section -->
-        <section class="share" style="width: 100%;">
-            <h2>Share Your Prompt</h2>
-            <form action="/submit_prompt" method="POST" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label for="prompt-purpose">Prompt Purpose:</label>
-                    <textarea id="prompt-purpose" name="prompt_purpose" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="engineered-prompt">Engineered Prompt:</label>
-                    <textarea id="engineered-prompt" name="engineered_prompt" required></textarea>
-                
-                </div>
-                <div class="form-group">
-                    <label for="prompt-type">Prompt Type:</label>
-                    <select id="prompt-type" name="prompt_type" required>
-                        <option value="low-code-no-code" selected>Low Code/No Code</option>
-                        <option value="image-reference">Image Reference</option>
-                        <option value="video-reference">Video Reference</option>
-                    </select>
-                </div>
-                <div class="form-group" id="upload-section" style="display: none;">
-                    <label id="upload-label" for="file-upload"></label>
-                    <input type="file" id="file-upload" name="file_upload" accept="" style="display: none;">
-                </div>
-                <!--inside prompt share button-->
-                <button style="
-                    background: #1d1c1c;
-                    color: white;
-                    border: none;
-                    border-radius: 40px;
-                    padding: 0.75rem 1.5rem;
-                    font-family: inherit;
-                    font-size: 1rem;
-                    font-weight:300;
-                    cursor: pointer;
-                    transition: background 0.3s;">
-                    Share Prompt
-                </button>
-            </form>
-        </section>
-        
-        <script>
+<section class="share" style="width: 100%;">
+    <h2>Share Your Prompt</h2>
+    <form id="share-prompt-form" action="/submit_prompt" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="prompt-purpose">Prompt Purpose:</label>
+            <textarea id="prompt-purpose" name="prompt_purpose" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="engineered-prompt">Engineered Prompt:</label>
+            <textarea id="engineered-prompt" name="engineered_prompt" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="prompt-type">Prompt Type:</label>
+            <select id="prompt-type" name="prompt_type" required>
+                <option value="low-code-no-code" selected>Low Code/No Code</option>
+                <option value="image-reference">Image Reference</option>
+                <option value="video-reference">Video Reference</option>
+            </select>
+        </div>
+        <div class="form-group" id="upload-section">
+            <label id="upload-label" for="file-upload">Upload (Image/Video):</label>
+            <input type="file" id="file-upload" name="file_upload" accept="image/*" />
+        </div>
+        <button type="submit" style="
+            background: #1d1c1c;
+            color: white;
+            border: none;
+            border-radius: 40px;
+            padding: 0.75rem 1.5rem;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 300;
+            cursor: pointer;
+            transition: background 0.3s;">
+            Share Prompt
+        </button>
+    </form>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const promptTypeSelect = document.getElementById('prompt-type');
+        const fileUpload = document.getElementById('file-upload');
+
+        // Update the file input's accept attribute dynamically
+        promptTypeSelect.addEventListener('change', () => {
+            const selectedType = promptTypeSelect.value;
+
+            if (selectedType === 'image-reference') {
+                fileUpload.setAttribute('accept', 'image/*'); // Accept only images
+            } else if (selectedType === 'video-reference') {
+                fileUpload.setAttribute('accept', 'video/*'); // Accept only videos
+            } else {
+                fileUpload.setAttribute('accept', 'image/*,video/*'); // Accept both images and videos
+            }
+        });
+    });
+
             document.addEventListener('DOMContentLoaded', () => {
                 const promptTypeSelect = document.getElementById('prompt-type');
                 const uploadSection = document.getElementById('upload-section');
@@ -156,46 +171,55 @@
                 });
             });
         </script>
-           <!--table-->
-            <div class="warehouse-prompt-wrapper">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>PROMPT PURPOSE</th>
-                            <th>ENGINEERED PROMPT</th>
-                            <th>PROMPT TYPE</th>
-                            <th>IMAGE/VIDEO REFERENCE</th>
-                            <th>LIKES</th>
-                            <th>CHATGPT</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for prompt in prompts %}
-                        <tr>
-                            <td>{{ prompt.Prompt_Purpose }}</td>
-                            <td>{{ prompt.Engineered_Prompt }}</td>
-                            <td>{{ prompt.Prompt_Type }}</td>
-                            <td>
-                             {% if prompt.Prompt_Type in ['image-reference', 'video-reference'] %}
-                             <a href="{{ prompt.file_url }}" target="_blank">View File</a>
-                             {% else %}
-                              N/A
-                              {% endif %}
-                            </td> 
-                            <td>
-                                <button class="like-button" data-prompt-id="{{ prompt.id }}">
-                                    <div class="like-icon">👍</div>
-                                    <div class="like-text">Like (<span class="like-count">{{ prompt.number_of_likes }}</span>)</div>
-                                </button>
-                            </td>
-                            <td>
-                                <a href="https://chat.openai.com/?prompt={{ prompt.Engineered_Prompt }}" target="_blank" class="apply-in-chatgpt-link">Apply in ChatGPT</a>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
+   <div class="warehouse-prompt-wrapper">
+    <table>
+        <thead>
+            <tr>
+                <th>PROMPT PURPOSE</th>
+                <th>ENGINEERED PROMPT</th>
+                <th>PROMPT TYPE</th>
+                <th>MEDIA</th>
+                <th>LIKES</th>
+                <th>CHATGPT</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for prompt in prompts %}
+            <tr>
+                <td>{{ prompt.Prompt_Purpose }}</td>
+                <td>{{ prompt.Engineered_Prompt }}</td>
+                <td>{{ prompt.Prompt_Type }}</td>
+                <td>
+                    {% if prompt.file_url %}
+                        <div class="media-container">
+                            {% if '.mp4' in prompt.file_url or '.webm' in prompt.file_url %}
+                                <video controls class="media">
+                                    <source src="{{ prompt.file_url }}" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            {% else %}
+                                <img src="{{ prompt.file_url }}" alt="Media Reference" class="media">
+                            {% endif %}
+                        </div>
+                    {% else %}
+                        N/A
+                    {% endif %}
+                </td>
+                <td>
+                    <button class="like-button" data-prompt-id="{{ prompt.id }}">
+                        <div class="like-icon">👍</div>
+                        <div class="like-text">Like (<span class="like-count">{{ prompt.number_of_likes }}</span>)</div>
+                    </button>
+                </td>
+                <td>
+                    <a href="https://chat.openai.com/?prompt={{ prompt.Engineered_Prompt }}" target="_blank" class="apply-in-chatgpt-link">Apply in ChatGPT</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
         </section>
     </main>
 
@@ -215,34 +239,28 @@
             <div class="resource-list">
                 <!-- Resource 1 -->
                 <div class="resource-card">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
-                        <circle cx="25" cy="25" r="20" fill="#1E90FF" filter="url(#f1)"/>
-                        <defs>
-                            <filter id="f1" x="-50%" y="-50%" width="200%" height="200%">
-                                <feDropShadow dx="4" dy="4" stdDeviation="2" flood-color="#000000" flood-opacity="0.5"/>
-                            </filter>
-                        </defs>
-                    </svg>
-                    <h3>Our goal is to create a transformative prompt that serves as the foundation for a powerful product, driving innovation and delivering value to users.</h3>
+                    <i class="fas fa-lightbulb" style="font-size: 2rem; color: #FFD700; margin-bottom: 10px;"></i>
+                    <h3>Transformative Prompts</h3>
+                    <p>Discover powerful prompts that inspire creativity and innovation.</p>
                 </div>
     
                 <!-- Resource 2 -->
                 <div class="resource-card">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
-                        <circle cx="25" cy="25" r="20" fill="#1E90FF" filter="url(#f1)"/>
-                        <defs>
-                    <h3>An expertly engineered prompt can achieve what weeks of coding cannot.</h3>
+                    <i class="fas fa-cogs" style="font-size: 2rem; color: #4CAF50; margin-bottom: 10px;"></i>
+                    <h3>Optimized Efficiency</h3>
+                    <p>Learn how expertly engineered prompts maximize productivity.</p>
                 </div>
     
                 <!-- Resource 3 -->
                 <div class="resource-card">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
-                        <circle cx="25" cy="25" r="20" fill="#1E90FF" filter="url(#f1)"/>
-                        <defs>
-                    <h3>Transform your idea into a product with an AI-crafted prompt—no extensive technical expertise needed, just your passion for innovation!</h3>
-                </div>               
-            
+                    <i class="fas fa-rocket" style="font-size: 2rem; color: #1E90FF; margin-bottom: 10px;"></i>
+                    <h3>AI-Powered Solutions</h3>
+                    <p>Turn your ideas into reality with advanced AI-powered tools.</p>
+                </div>
+            </div>
+        </div>
     </section>
+    
     <section>
     </div>
     <!-- Video Tutorial Section -->
@@ -404,4 +422,32 @@
         document.getElementById("quiz").style.display = "none";
         video.play();
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const closeModal = document.getElementById('closeModal');
+        const images = document.querySelectorAll('.prompt-image');
+    
+        // Open modal on image click
+        images.forEach(image => {
+            image.addEventListener('click', () => {
+                modal.style.display = 'block';
+                modalImg.src = image.src;
+            });
+        });
+    
+        // Close modal on close button click
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+    
+        // Close modal on outside click
+        modal.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    });
+    
 </script>
