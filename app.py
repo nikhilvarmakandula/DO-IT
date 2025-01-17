@@ -2,15 +2,23 @@ from flask import Flask, render_template, request, redirect, url_for, jsonify
 from firebase_admin import firestore, credentials, initialize_app
 import uuid
 from datetime import datetime
+import loginsignup
+from firebase_admin import credentials, initialize_app, firestore, storage
 
 # Initialize Flask app
 app = Flask(__name__)
 
-# Initialize Firestore with provided credentials
+# Initialize Firebase Admin with Firestore and Storage
 cred = credentials.Certificate('engineeredPrompt.json')
-firebase_app = initialize_app(cred)
+firebase_app = initialize_app(cred, {
+    'storageBucket': 'disharaengineeredprompt.firebasestorage.app'  # Replace with your bucket name
+})
+
+# Firestore client
 db = firestore.client()
 
+# Firebase Storage bucket
+bucket = storage.bucket()
 
 # Route to render index.html
 @app.route('/')
@@ -103,28 +111,49 @@ def logout():
 def terms_of_service():
     return render_template("termsofservice.html")
 
-
 @app.route('/submit_prompt', methods=['POST'])
 def submit_prompt():
-    
     prompt_purpose = request.form['prompt_purpose']
     engineered_prompt = request.form['engineered_prompt']
+    prompt_type = request.form['prompt_type']
     time_stamp = datetime.now()
 
+    # Initialize the data dictionary
     prompt_data = {
         'Prompt_Purpose': prompt_purpose,
         'Engineered_Prompt': engineered_prompt,
+        'Prompt_Type': prompt_type,
         'time_stamp': time_stamp,
         'number_of_likes': 0  # Initialize likes
     }
 
+    # Handle file upload
+    file = request.files.get('file_upload')
+    if file:
+        try:
+            # Generate a unique filename
+            file_extension = file.filename.split('.')[-1]
+            filename = f"{uuid.uuid4()}.{file_extension}"
+
+            # Upload to Firebase Storage
+            bucket = storage.bucket()  # Ensure the correct bucket is specified
+            blob = bucket.blob(f'uploads/{filename}')
+            blob.upload_from_file(file)
+            blob.make_public()  # Make the file publicly accessible
+
+            # Add the file URL to prompt data
+            prompt_data['file_url'] = blob.public_url
+        except Exception as e:
+            print(f"Error uploading file: {e}")
+            return redirect(url_for('index'))
+
     try:
+        # Save the prompt data to Firestore
         db.collection('PRMTFILP').add(prompt_data)
         return redirect(url_for('index'))
     except Exception as e:
         print(f"Error adding prompt: {e}")
         return redirect(url_for('index'))
-
 
 @app.route('/like_prompt', methods=['POST'])
 def like_prompt():
@@ -143,9 +172,9 @@ def like_prompt():
             prompt_data = prompt_doc.to_dict()
             liked_by = prompt_data.get('liked_by', [])  # Get the array of users who liked
 
-            # If user already liked, do nothing and return success with current likes
+            # Check if the user has already liked the prompt
             if user_id in liked_by:
-                return jsonify({'success': True, 'updated_likes': prompt_data.get('number_of_likes', 0)})
+                return jsonify({'success': False, 'message': 'You have already liked this prompt.'})
 
             # Increment likes and add user to liked_by
             current_likes = prompt_data.get('number_of_likes', 0)
@@ -157,7 +186,7 @@ def like_prompt():
                 'liked_by': liked_by
             })
 
-            return jsonify({'success': True, 'updated_likes': current_likes + 1})
+            return jsonify({'success': True, 'message': 'Liked successfully!', 'updated_likes': current_likes + 1})
 
         else:
             return jsonify({'success': False, 'message': 'Prompt not found'})
