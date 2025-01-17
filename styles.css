@@ -109,7 +109,7 @@ nav ul li a:hover {
     gap: 2rem;
 }
 .prompts, .share {
-    background: white;
+    background: #d5d5d5;
     border-radius: 50px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     padding: 1.5rem;
@@ -479,7 +479,7 @@ textarea {
 
     /* Resource Center Section */
 #resource-center {
-    background-color: #F4F4F4;
+    background-color: #EAEAEA;
     color:#333;
     font-family: SFMono-Regular;
     padding: 50px 20px;
@@ -675,3 +675,48 @@ textarea {
     color: #ffffff;
   }
   
+  table img {
+    max-width: 150px;
+    height: auto;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+
+table video {
+    max-width: 150px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+/* Media container for consistent layout */
+.media-container {
+    position: relative;
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    overflow: visible; /* Allow enlarged media to go beyond container */
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+/* Default media styles (image/video) */
+.media {
+    width: 100%; /* Fit within the container */
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Hover effect to enlarge media directly over its field */
+.media-container:hover .media {
+    transform: scale(5); /* Quintuple the size */
+    transform-origin: center center; /* Enlarge from the center of the media */
+    z-index: 1000; /* Ensure it appears above other elements */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Add focus with shadow */
+}
+
+
