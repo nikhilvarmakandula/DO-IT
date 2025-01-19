@@ -109,18 +109,73 @@ nav ul li a:hover {
     gap: 2rem;
 }
 .prompts, .share {
-    background: #d5d5d5;
-    border-radius: 50px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    padding: 1.5rem;
+    background: #fff;
+    border-radius: 50px; 
+    box-shadow: 0 4px 10px rgba(62, 58, 58, 0.723); 
+    padding: 3rem;
     flex: 1;
-    min-width: 48%;
-}
-.prompts h2, .share h2 {
-    font-size: 1.75rem;
-    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    width: 50%; 
+    max-width: 800px; 
+    min-width: 300px;
+    margin: 0 auto; 
+    box-sizing: border-box; 
 }
 
+.prompts h2, .share h2 {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+    text-align: center; /* Center-align the heading */
+    
+}
+/* Styling for form labels */
+form .form-group {
+    width: 100%; /* Ensure form fields take full width */
+    margin-bottom: 1.5rem; /* Space between form fields */
+}
+
+form .form-group label {
+    display: block;
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 0.5rem; /* Space below the label */
+}
+
+/* Styling for input, select, textarea */
+form input, form select, form textarea {
+    width: 65%; 
+    padding: 1rem;
+    font-size: 1rem;
+    font-family: inherit; 
+    border: 2px solid #ccc;
+    border-radius: 50px; 
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box; 
+}
+
+form input:focus, form select:focus, form textarea:focus {
+    border-color: #1d1c1c; 
+    outline: none; 
+    box-shadow: 0 0 4px rgba(29, 28, 28, 0.4); 
+}
+
+/* Styling for textarea (multiline input) */
+form textarea {
+    min-height: 150px; 
+    resize: vertical; 
+}
+
+/* Styling for file input */
+form #file-upload {
+    padding: 1rem;
+    border-radius: 50px;
+    border: 2px solid #ccc;
+    background-color: #f9f9f9;
+}
 /* Search Section */
 .search-bar {
     display: flex;
@@ -180,7 +235,8 @@ table th {
 }
 .form-group1 label {
     font-weight: bold;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    margin-top: -4rem;
     display: block;
 }
 .form-group1 textarea {
@@ -210,10 +266,6 @@ table th {
 .share button:hover {
     background: #059669;
 }
-
-
-
-
 /* Footer 1 Style */
 .footer-style-1 {
     background:white;
@@ -250,27 +302,49 @@ table th {
     margin: 0 auto;
 }
 .vision-section b {
-    color:#5890b5;
+    color: #4a4a4a;
 }
 
-/* Warehouse Table */
+/* Wrapper for centering */
+.warehouse-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem; /* Space around the table */
+    height: 100vh; 
+    box-sizing: border-box;
+    border-radius: 50px;
+}
+
 .warehouse-prompt-wrapper {
-    overflow-x: auto;
-    border-radius: 8px;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    padding: 2rem;
+    box-sizing: border-box; 
 }
+
 .warehouse-prompt-wrapper table {
-    width: 100%;
+    width: 95%; 
     border-collapse: collapse;
+    margin: 0 auto; 
+    background-color: #fff; 
+    border: 1px solid #ccc;
 }
+
+
 .warehouse-prompt-wrapper th, .warehouse-prompt-wrapper td {
     padding: 0.75rem;
-    border:groove;
+    border:inset;
     text-align: left;
-
+    border: 2px solid #333; /* Border color */
+    border-radius: 50px; 
 }
+
 .warehouse-prompt-wrapper th {
     background-color: #fff;
 }
+
 
 /* Ensure top alignment for Prompt Purpose */
 table td {
@@ -289,19 +363,24 @@ table td {
     color: #333;
     font-weight: bold;
 }
-
 .apply-in-chatgpt-link {
+    direction: rtl;
+    text-align: right to left;
     text-decoration: none;
-    color:#1e88e5df;
+    color:#6c757d;
     font-weight: bold;
-    margin-left: 10px;
+    margin-right: 20px; 
+    margin-left: 0; 
     font-size: 1rem;
     transition: color 0.3s ease;
+    display: inline-block;
+    word-wrap: break-word; 
 }
 
 .apply-in-chatgpt-link:hover {
-    color: #1a9c5e;
+    color: #4a4a4a;
 }
+
 /* Feedback Button */
 #feedback-button {
     position: fixed;
@@ -354,18 +433,45 @@ table td {
 #feedback-button {
     animation: pulse 2s infinite ease-in-out;
 }
-#feedback-form {
-    background-color:#fff;
-    border: 1px solid #ddd;
-    padding: 30px;
-    border-radius: 10px;
-    margin-top: 30px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 600px;
-    margin: 20px auto;
-    font-family: 'Arial', sans-serif;
+/* Hide Button for Feedback Form */
+#hide-feedback-button {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: #6c757d;;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index: 10;
 }
+
+/* Hover effect for the Hide Button */
+#hide-feedback-button:hover {
+    background-color: #4a4a4a;
+}
+
+
+/* Feedback form styling */
+#feedback-form {
+    display: none;  
+    position: fixed; 
+    bottom: 80px; 
+    right: 20px;  
+    background-color: #fff;
+    border: 1px solid #333;
+    padding: 20px;
+    border-radius: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 25%; 
+    max-width:300px;  
+    z-index: 999;  
+    font-family:inherit;
+}
+
 
 /*  feedback Title  */
 #feedback-form h2 {
@@ -373,6 +479,8 @@ table td {
     color: #333;
     margin-bottom: 15px;
     text-align: center;
+    font-family: inherit;
+    border-radius: 50px;
 }
 
 /* feedback description */
@@ -380,39 +488,72 @@ table td {
     font-size: 16px;
     color: #666;
     margin-bottom: 20px;
+    border-radius: 50px;
+    padding: 0.5rem 1.25rem;
+}
+/* Placeholder visibility */
+input::placeholder, textarea::placeholder {
+    color: #999; 
 }
 
 /*  feedback textarea  */
-input[type="text"], input[type="email"], textarea {
-    width: 100%;
-    padding: 12px;
+ textarea {
+    width: 50%;
+    padding:20px;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 50px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     box-sizing: border-box;
     transition: border-color 0.3s ease;
+    
+}
+/* Email Input Styling with Margin-Bottom */
+input[type="email"] {
+    width: 100%;
+    padding: 20px;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    margin-bottom: 20px;  
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+/* Focus effect for email input */
+input[type="email"]:focus {
+    border-color: #3498db;
+    outline: none;
 }
 
 /* Focus effect for inputs and textarea */
 input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
     border-color: #3498db;
     outline: none;
+    width: 100%;
+    padding: 0.5rem 1.25rem;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+ /* Submit  feedback button  */
+button[type="submit"] {
+    padding: 0.5rem 1.25rem;
+    background:#4a4a4a;
+    font-family: SFMono-Regular ;
+    color:#fff;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight:300;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: transform 0.2s, background 0.3s;
 }
 
-    /* Submit  feedback button  */
-button[type="submit"] {
-    background-color: #4a4a4a;
-    font-family: inherit;
-    color: white;
-    padding: 14px 24px;
-    font-size: 18px;
-    border: none;
-    border-radius: 5px; /* Rounded */
-    cursor: pointer;
-    width: 100%;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
 
 /* Button hover effect */
 button[type="submit"]:hover {
@@ -454,7 +595,7 @@ textarea {
     justify-content: center;
     background: none;
     border: none;
-    color:#1e88e5df;
+    color:#6c757d;;
     font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
@@ -465,7 +606,7 @@ textarea {
 
 /* Hover Effect */
 .like-button:hover {
-    color: #c2126d;
+    color: #4a4a4a;
 }
 
 /* Emoji  */
@@ -696,7 +837,7 @@ table video {
     display: inline-block;
     width: 100px;
     height: 100px;
-    overflow: visible; /* Allow enlarged media to go beyond container */
+    overflow: visible; 
     border: 1px solid #ccc;
     border-radius: 10px;
 }
@@ -713,10 +854,9 @@ table video {
 
 /* Hover effect to enlarge media directly over its field */
 .media-container:hover .media {
-    transform: scale(5); /* Quintuple the size */
-    transform-origin: center center; /* Enlarge from the center of the media */
-    z-index: 1000; /* Ensure it appears above other elements */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Add focus with shadow */
+    transform: scale(5); 
+    transform-origin: center center; 
+    z-index: 1000; 
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); 
 }
-
 
