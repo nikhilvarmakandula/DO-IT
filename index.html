@@ -67,27 +67,26 @@
       
 
   <!-- Main Content -->
-  <main class="main" style="display: flex; flex-direction: column; gap: 2rem;">
+  <main class="main" style="display: flex; justify-content:center;align-items: center; gap: 2rem;">
     <!--share your prompt button-->
     <button id="toggle-share-btn" style="
-        margin: 1rem auto;
-        padding: 0.75rem 1.5rem;
-        background: #4a4a4a;
-        color: #fff;
-        border: none;
-        border-radius: 50px;
-        font-size:1.2rem;
-        font-weight: 400;
-        font-family: inherit;
-        cursor: pointer;
-        transition: background 0.3s;
+    padding: 0.5rem 1.25rem;
+    background:#4a4a4a;
+    font-family: SFMono-Regular ;
+    color:#fff;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight:300;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.3s;
     " onmouseover="this.style.background='#1d1c1c'" 
       onmouseout="this.style.background='#4a4a4a'">
-        Share Your Prompt
+        <b>Share Your Prompt</b>
     </button>
 </main>
 
-<section class="share" style="width: 100%;">
+<section class="share" style="width:50%;">
     <h2>Share Your Prompt</h2>
     <form id="share-prompt-form" action="/submit_prompt" method="POST" enctype="multipart/form-data">
         <div class="form-group">
@@ -101,9 +100,9 @@
         <div class="form-group">
             <label for="prompt-type">Prompt Type:</label>
             <select id="prompt-type" name="prompt_type" required>
-                <option value="low-code-no-code" selected>Low Code/No Code</option>
-                <option value="image-reference">Image Reference</option>
-                <option value="video-reference">Video Reference</option>
+                <option value="Lowcode/Nocode" selected>Lowcode/NOCode</option>
+                <option value="Image Reference">Image Reference</option>
+                <option value="Video Reference">Video Reference</option>
             </select>
         </div>
         <div class="form-group" id="upload-section">
@@ -111,16 +110,17 @@
             <input type="file" id="file-upload" name="file_upload" accept="image/*" />
         </div>
         <button type="submit" style="
-            background: #1d1c1c;
-            color: white;
+            padding: 0.5rem 1.25rem;
+            background:#4a4a4a;
+            font-family: SFMono-Regular ;
+            color:#fff;
             border: none;
-            border-radius: 40px;
-            padding: 0.75rem 1.5rem;
-            font-family: inherit;
-            font-size: 1rem;
-            font-weight: 300;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight:300;
+            width: 30%;
             cursor: pointer;
-            transition: background 0.3s;">
+            transition: transform 0.2s, background 0.3s;">
             Share Prompt
         </button>
     </form>
@@ -135,9 +135,9 @@
         promptTypeSelect.addEventListener('change', () => {
             const selectedType = promptTypeSelect.value;
 
-            if (selectedType === 'image-reference') {
+            if (selectedType === 'Image Reference') {
                 fileUpload.setAttribute('accept', 'image/*'); // Accept only images
-            } else if (selectedType === 'video-reference') {
+            } else if (selectedType === 'Video Reference') {
                 fileUpload.setAttribute('accept', 'video/*'); // Accept only videos
             } else {
                 fileUpload.setAttribute('accept', 'image/*,video/*'); // Accept both images and videos
@@ -154,12 +154,12 @@
                 promptTypeSelect.addEventListener('change', () => {
                     const selectedType = promptTypeSelect.value;
         
-                    if (selectedType === 'image-reference') {
+                    if (selectedType === 'Image Reference') {
                         uploadSection.style.display = 'block';
                         uploadLabel.textContent = 'Upload Image:';
                         fileUpload.style.display = 'block';
                         fileUpload.setAttribute('accept', 'image/*');
-                    } else if (selectedType === 'video-reference') {
+                    } else if (selectedType === 'Video Reference') {
                         uploadSection.style.display = 'block';
                         uploadLabel.textContent = 'Upload Video:';
                         fileUpload.style.display = 'block';
@@ -231,6 +231,8 @@
             <input type="email" name="email" placeholder="Your email (optional)" /><br>
             <button type="submit">Submit Feedback</button>
         </form>
+        <!-- Small Hide Button -->
+        <button id="hide-feedback-button" onclick="toggleFeedbackForm()">X</button>
     </div>
     <section id="resource-center">
         <div class="container">
@@ -288,11 +290,8 @@
         <h3>Company</h3>
         <ul>
           <li><a href="http://127.0.0.1:5000">About Us</a></li>
-          <li><a href="#leadership">Leadership Team</a></li>
-          <li><a href="#testimonials">Testimonials</a></li>
-          <li><a href="#careers">Work with Us</a></li>
-          <li><a href="#newsroom">Newsroom</a></li>
-          <li><a href="#cares">ENGINEERED PROMPT</a></li>
+          <li><a href="#">Work with Us</a></li>
+          <li><a href="http://127.0.0.1:5000">ENGINEERED PROMPT</a></li>
         </ul>
       </div>
       <div class="footer-section">
@@ -301,24 +300,20 @@
           <li><a href="#requirements">System Requirements</a></li>
           <li><a href="#privacy">Privacy Policy</a></li>
           <li><a href="#terms">Terms of Use</a></li>
-          <li><a href="#accessibility">Accessibility Assistance</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h3>Connect</h3>
         <ul>
-          <li><a href="#contact">Contact Us</a></li>
-          <li><a href="#forums">Forums</a></li>
+          <li><a href="mailto:engineeredprompt@gmail.com"">Contact Us</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h3>Follow Us</h3>
         <div class="social-icons">
           <a href="https://www.facebook.com/profile.php?id=61569854413616"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
           <a href="https://www.linkedin.com/in/engineeredprompt-engineeredprompt-577a13342/"><i class="fab fa-linkedin-in"></i></a>
           <a href="https://twitter.com/engineeredpromhttps://twitter.com/engineeredpromp"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-youtube"></i></a>
           <a href="https://mail.google.com/mail/?view=cm&fs=1&to=engineeredprompt@gmail.com" target="_blank">
           <i class="fas fa-envelope"></i>
         </a>
@@ -378,12 +373,21 @@
             });
         });
 
-        // Feedback form toggle functionality
         const feedbackButton = document.getElementById('feedback-button');
         const feedbackForm = document.getElementById('feedback-form');
-        feedbackButton.addEventListener('click', () => {
-            feedbackForm.style.display = feedbackForm.style.display === 'none' || feedbackForm.style.display === '' ? 'block' : 'none';
-        });
+        const hideButton = document.getElementById('hide-feedback-button');
+
+       // When the feedback button is clicked, show the feedback form and hide the feedback button
+       feedbackButton.addEventListener('click', () => {
+       feedbackForm.style.display = 'block';
+       feedbackButton.style.display = 'none';  // Hide feedback button when form appears
+      });
+
+      // When the hide button is clicked, hide the feedback form and show the feedback button again
+      hideButton.addEventListener('click', () => {
+      feedbackForm.style.display = 'none';
+      feedbackButton.style.display = 'block';  // Show feedback button again
+     });
     });
 </script>
 <script>
