@@ -37,150 +37,101 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
+
     <header>
         <div class="logo">
-            AI Prompts <span class="gear">⚡</span><span>Engineered</span>
+            <img src="/static/logo.png" alt="AI Prompts Engineered" style="max-height: 80px; width: auto;">
         </div>
         <nav>
             <ul>
                 <li><a href="/">HOME</a></li>
-                <li><a href="login.html">LOGIN</a></li>
-                <li><a href="signup.html">SIGN UP</a></li>
-                <li><a href="/logout">SIGN OUT</a></li>
+                {% if not is_logged_in %}
+                    <li><a href="login.html">LOGIN</a></li>
+                    <li><a href="signup.html">SIGN UP</a></li>
+                {% else %}
+                    <li><a href="/logout">LOGOUT</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>
-
+    
     <!-- Vision Section -->
     <section class="vision-section">
         <p><b>OUR VISION:</b> At the forefront of AI, we firmly believe Engineered Prompts will play a vital role. This platform is an honest attempt to build an Engineered prompt warehouse to achieve PROMPT DRIVEN, Business Critical, NO-CODE/LOW-CODE Solutions.</p>
     </section>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>Discover and Share "Engineered" AI Prompts</h1>
-        <p>It is a thrilling experience to Engineer a Business and Machine critical prompt! We have an opportunity to Experience The thrill each time we share an Engineered prompt. Collaborate and innovate with the community!</p>
+<!-- Hero Section -->
+<section class="hero">
+    <h1>Discover and Share "Engineered" AI Prompts</h1>
+    <p>It is a thrilling experience to Engineer a Business and Machine critical prompt! We have an opportunity to Experience The thrill each time we share an Engineered prompt. Collaborate and innovate with the community!</p>
+    {% if not is_logged_in %}
         <a href="login.html"><button><b>Explore Our Prompts</b></button></a>
-    </section>
-    
-      
+    {% endif %}
+</section>
 
-  <!-- Main Content -->
-  <main class="main" style="display: flex; justify-content:center;align-items: center; gap: 2rem;">
-    <!--share your prompt button-->
+
+<!-- Share Button Section -->
+<main class="main" style="display: flex; justify-content:center;align-items: center; gap: 2rem;">
+    <!-- Share and Hide Button -->
     <button id="toggle-share-btn" style="
-    padding: 0.5rem 1.25rem;
-    background:#4a4a4a;
-    font-family: SFMono-Regular ;
-    color:#fff;
-    border: none;
-    border-radius: 50px;
-    font-size: 1.2rem;
-    font-weight:300;
-    cursor: pointer;
-    transition: transform 0.2s, background 0.3s;
+        padding: 0.75rem 1.5rem;
+        background:#4a4a4a;
+        font-family: SFMono-Regular;
+        color:#fff;
+        border: none;
+        border-radius: 50px;
+        font-size: 1.4rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: transform 0.2s, background 0.3s;
     " onmouseover="this.style.background='#1d1c1c'" 
-      onmouseout="this.style.background='#4a4a4a'">
+        onmouseout="this.style.background='#4a4a4a'">
         <b>Share Your Prompt</b>
     </button>
 </main>
 
-<section class="share" style="width:50%;">
-    <h2>Share Your Prompt</h2>
+<section class="share">
+    <h3>Share Your Prompt</h3>
     <form id="share-prompt-form" action="/submit_prompt" method="POST" enctype="multipart/form-data">
         <div class="form-group">
-            <label for="prompt-purpose">Prompt Purpose:</label>
-            <textarea id="prompt-purpose" name="prompt_purpose" required></textarea>
+            <label for="prompt-purpose" class="form-label">Prompt Purpose:</label>
+            <textarea id="prompt-purpose" name="prompt_purpose" class="form-input" required></textarea>
+            <div class="error-message" id="purpose-error"></div>
         </div>
         <div class="form-group">
-            <label for="engineered-prompt">Engineered Prompt:</label>
-            <textarea id="engineered-prompt" name="engineered_prompt" required></textarea>
+            <label for="engineered-prompt" class="form-label">Engineered Prompt:</label>
+            <textarea id="engineered-prompt" name="engineered_prompt" class="form-input" required></textarea>
+            <div class="error-message" id="engineered-error"></div>
         </div>
         <div class="form-group">
-            <label for="prompt-type">Prompt Type:</label>
-            <select id="prompt-type" name="prompt_type" required>
-                <option value="Lowcode/Nocode" selected>Lowcode/NOCode</option>
+            <label for="prompt-type" class="form-label">Prompt Type:</label>
+            <select id="prompt-type" name="prompt_type" class="form-input" required>
+                <option value="" selected disabled>Select Prompt Type</option>
+                <option value="Lowcode/Nocode">Lowcode/NOCode</option>
                 <option value="Image Reference">Image Reference</option>
                 <option value="Video Reference">Video Reference</option>
             </select>
+            <div class="error-message" id="type-error"></div>
+
         </div>
-        <div class="form-group" id="upload-section">
-            <label id="upload-label" for="file-upload">Upload (Image/Video):</label>
-            <input type="file" id="file-upload" name="file_upload" accept="image/*" />
+        <div class="form-group">
+            <label for="file-upload" class="form-label">Upload (Image/Video):</label>
+            <input type="file" id="file-upload" name="file_upload" class="form-input" accept="image/*,video/*" />
         </div>
-        <button type="submit" style="
-            padding: 0.5rem 1.25rem;
-            background:#4a4a4a;
-            font-family: SFMono-Regular ;
-            color:#fff;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight:300;
-            width: 30%;
-            cursor: pointer;
-            transition: transform 0.2s, background 0.3s;">
-            Share Prompt
-        </button>
+        <button type="submit" id="submit-prompt-btn" class="share-btn">Share Prompt</button>
     </form>
 </section>
 
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const promptTypeSelect = document.getElementById('prompt-type');
-        const fileUpload = document.getElementById('file-upload');
-
-        // Update the file input's accept attribute dynamically
-        promptTypeSelect.addEventListener('change', () => {
-            const selectedType = promptTypeSelect.value;
-
-            if (selectedType === 'Image Reference') {
-                fileUpload.setAttribute('accept', 'image/*'); // Accept only images
-            } else if (selectedType === 'Video Reference') {
-                fileUpload.setAttribute('accept', 'video/*'); // Accept only videos
-            } else {
-                fileUpload.setAttribute('accept', 'image/*,video/*'); // Accept both images and videos
-            }
-        });
-    });
-
-            document.addEventListener('DOMContentLoaded', () => {
-                const promptTypeSelect = document.getElementById('prompt-type');
-                const uploadSection = document.getElementById('upload-section');
-                const uploadLabel = document.getElementById('upload-label');
-                const fileUpload = document.getElementById('file-upload');
-        
-                promptTypeSelect.addEventListener('change', () => {
-                    const selectedType = promptTypeSelect.value;
-        
-                    if (selectedType === 'Image Reference') {
-                        uploadSection.style.display = 'block';
-                        uploadLabel.textContent = 'Upload Image:';
-                        fileUpload.style.display = 'block';
-                        fileUpload.setAttribute('accept', 'image/*');
-                    } else if (selectedType === 'Video Reference') {
-                        uploadSection.style.display = 'block';
-                        uploadLabel.textContent = 'Upload Video:';
-                        fileUpload.style.display = 'block';
-                        fileUpload.setAttribute('accept', 'video/*');
-                    } else {
-                        uploadSection.style.display = 'none';
-                        fileUpload.value = ''; // Clear the file input
-                    }
-                });
-            });
-        </script>
-   <div class="warehouse-prompt-wrapper">
+<div class="warehouse-prompt-wrapper">
     <table>
         <thead>
             <tr>
-                <th>PROMPT PURPOSE</th>
-                <th>ENGINEERED PROMPT</th>
-                <th>PROMPT TYPE</th>
-                <th>MEDIA</th>
-                <th>LIKES</th>
-                <th>CHATGPT</th>
+                <th class="prompt-purpose">PROMPT PURPOSE</th>
+                <th class="engineered-prompt">ENGINEERED PROMPT</th>
+                <th class="prompt-type">PROMPT TYPE</th>
+                <th class="media-column">MEDIA</th>
+                <th class="likes-column">LIKES</th>
+                <th class="chatgpt-column">CHATGPT</th>
             </tr>
         </thead>
         <tbody>
@@ -219,7 +170,7 @@
         </tbody>
     </table>
 </div>
-
+    
         </section>
     </main>
 
@@ -263,22 +214,6 @@
         </div>
     </section>
     
-    <section>
-    </div>
-    <!-- Video Tutorial Section -->
-    <div class="video-container">
-    <h2>Watch and Learn</h2>
-    <p>Explore our curated video tutorials for advanced learning.</p>
-    <video id="tutorialVideo" controls>
-        <source src="your-video.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>                    
-    </div>
-    </section>
-    
-        
-    </div>
-</section>
 <!-- footer style1-->    
 <footer class="footer-style-1">
    One Stop promptsol.
@@ -327,131 +262,70 @@
 </footer>
   
 
-       <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // Ensure the Share section is hidden initially
-        const shareSection = document.querySelector('.share');
-        const toggleButton = document.querySelector('#toggle-share-btn');
-        const promptsSection = document.querySelector('.prompts');
-
-        shareSection.style.display = 'none'; // Hide Share section initially
-
-        // Toggle Share Section functionality
-        toggleButton.addEventListener('click', () => {
-            if (shareSection.style.display === 'none') {
-                shareSection.style.display = 'block';
-                toggleButton.textContent = 'Hide Share Your Prompt';
-                promptsSection.style.marginTop = '2rem';
-            } else {
-                shareSection.style.display = 'none';
-                toggleButton.textContent = 'Share Your Prompt';
-                promptsSection.style.marginTop = '0';
-            }
-        });
-
-        // Existing Like functionality
-        const likeButtons = document.querySelectorAll('.like-button');
-        const currentUserId = 'USER_ID_HERE'; // Replace this with the actual user ID (e.g., from session or backend)
-
-        likeButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const promptId = button.getAttribute('data-prompt-id');
-
-                fetch('/like_prompt', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ prompt_id: promptId, user_id: currentUserId })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        const likeCount = button.querySelector('.like-count');
-                        likeCount.textContent = data.updated_likes;
-                    }
-                })
-                .catch(err => console.error('Error:', err));
-            });
-        });
-
-        const feedbackButton = document.getElementById('feedback-button');
-        const feedbackForm = document.getElementById('feedback-form');
-        const hideButton = document.getElementById('hide-feedback-button');
-
-       // When the feedback button is clicked, show the feedback form and hide the feedback button
-       feedbackButton.addEventListener('click', () => {
-       feedbackForm.style.display = 'block';
-       feedbackButton.style.display = 'none';  // Hide feedback button when form appears
-      });
-
-      // When the hide button is clicked, hide the feedback form and show the feedback button again
-      hideButton.addEventListener('click', () => {
-      feedbackForm.style.display = 'none';
-      feedbackButton.style.display = 'block';  // Show feedback button again
-     });
-    });
-</script>
 <script>
-    // Log downloads for analytics (optional)
-    document.querySelectorAll('.resource-card .btn').forEach((button) => {
-        button.addEventListener('click', () => {
-            console.log(`Resource downloaded: ${button.getAttribute('href')}`);
-        });
-    });
-</script>
-<script>
-    // Interactive Tutorial using Intro.js
-    document.getElementById("startTutorial").addEventListener("click", () => {
-        introJs().setOptions({
-            steps: [
-                { intro: "Welcome to the tutorial! Learn how to interact with prompts." },
-                { element: '#startTutorial', intro: "Click here to start the interactive journey." }
-            ]
-        }).start();
-    });
-
-    // Video Tutorial with Interactive Quiz
-    const video = document.getElementById("tutorialVideo");
-    video.addEventListener("timeupdate", () => {
-        if (video.currentTime > 10 && video.currentTime < 15) {
-            document.getElementById("quiz").style.display = "block";
-            video.pause();
+document.addEventListener('DOMContentLoaded', () => {
+    const shareSection = document.querySelector('.share');
+    const toggleButton = document.querySelector('#toggle-share-btn');
+    const form = document.getElementById('share-prompt-form');
+    
+    // Toggle Share Section
+    shareSection.style.display = 'none'; // Hide Share section initially
+    toggleButton.addEventListener('click', () => {
+        if (shareSection.style.display === 'none') {
+            shareSection.style.display = 'block';
+            toggleButton.textContent = 'Hide Share Your Prompt';
+        } else {
+            shareSection.style.display = 'none';
+            toggleButton.textContent = 'Share Your Prompt';
         }
     });
 
-    function checkAnswer(answer) {
-        const message = answer === '1' 
-            ? "Correct! Prompt engineering optimizes AI prompts."
-            : "Incorrect. Try again!";
-        alert(message);
-        document.getElementById("quiz").style.display = "none";
-        video.play();
-    }
+    // Form Validation
+    form.addEventListener('submit', (e) => {
+        let isValid = true;
 
-    document.addEventListener('DOMContentLoaded', () => {
-        const modal = document.getElementById('imageModal');
-        const modalImg = document.getElementById('modalImage');
-        const closeModal = document.getElementById('closeModal');
-        const images = document.querySelectorAll('.prompt-image');
-    
-        // Open modal on image click
-        images.forEach(image => {
-            image.addEventListener('click', () => {
-                modal.style.display = 'block';
-                modalImg.src = image.src;
-            });
+        // Clear previous error messages
+        const errorMessages = form.querySelectorAll('.error-message');
+        errorMessages.forEach(error => {
+            error.style.display = 'none';
         });
-    
-        // Close modal on close button click
-        closeModal.addEventListener('click', () => {
-            modal.style.display = 'none';
-        });
-    
-        // Close modal on outside click
-        modal.addEventListener('click', (event) => {
-            if (event.target === modal) {
-                modal.style.display = 'none';
-            }
-        });
+
+        // Validate fields
+        const promptPurpose = document.getElementById('prompt-purpose');
+        const engineeredPrompt = document.getElementById('engineered-prompt');
+        const promptType = document.getElementById('prompt-type');
+
+        if (!promptPurpose.value.trim()) {
+            showError(promptPurpose, 'Please enter a valid prompt purpose.', 'purpose-error');
+            isValid = false;
+        }
+
+        if (!engineeredPrompt.value.trim()) {
+            showError(engineeredPrompt, 'Please enter the engineered prompt.', 'engineered-error');
+            isValid = false;
+        }
+
+        if (!promptType.value) {
+            showError(promptType, 'Please select a prompt type.', 'type-error');
+            isValid = false;
+        }
+
+        if (!isValid) e.preventDefault(); // Stop form submission if validation fails
     });
-    
+
+    // Function to show error messages
+    function showError(element, message, errorId) {
+        const errorMessage = document.getElementById(errorId);
+        errorMessage.textContent = message;
+        errorMessage.style.display = 'block';
+        element.style.borderColor = '#e74c3c'; // Highlight the field with red border
+
+        // Reset error styling after 5 seconds
+        setTimeout(() => {
+            errorMessage.style.display = 'none';
+            element.style.borderColor = ''; // Reset border color
+        }, 5000);
+    }
+});
+
 </script>
