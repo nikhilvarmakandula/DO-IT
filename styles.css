@@ -50,7 +50,7 @@ nav ul {
 }
 nav ul li a {
     color:#fff;
-    font-weight:550;
+    font-weight:500;
     font-family:proxima-nova,sans-serif !important;
     transition: color 0.3s;
 }
@@ -1091,3 +1091,29 @@ th {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Add depth with shadow */
 }
 
+.filter-container {
+    display: flex;
+    justify-content: center; /* Center-align filters */
+    gap: 1.5rem; /* Space between each filter */
+    margin: 1rem 0 2rem; /* Add spacing above and below */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column; /* Stack label and input */
+    align-items: center; /* Center-align elements in the group */
+}
+
+.filter-input,
+.filter-select {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 250px; /* Fixed width for consistent alignment */
+}
+
+.filter-input::placeholder {
+    color: #999;
+}
