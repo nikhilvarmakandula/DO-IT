@@ -973,17 +973,84 @@ table video {
     }
 }
 
-
-/* Error Message Styling */
-.error-message {
-    color: #e74c3c; /* Red color for errors */
-    font-size: 0.9rem;
-    margin-top: 0.5rem;
-    display: none; /* Initially hidden */
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* Enforces fixed column widths */
 }
 
-/* Highlight Invalid Fields */
-.form-input:invalid {
-    border-color: #e74c3c;
-    box-shadow: 0 0 4px rgba(231, 76, 60, 0.3);
+table th, table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    vertical-align: middle;
 }
+
+/* Adjust column widths */
+.prompt-purpose {
+    width: 20%; /* Allocate space for prompt purpose */
+}
+
+.engineered-prompt {
+    width: 35%; /* Increase space for engineered prompt */
+}
+
+.prompt-type {
+    width: 10%; /* Reduce width for prompt type */
+}
+
+.media-column {
+    width: 20%; /* Media column keeps a balanced size */
+}
+
+.likes-column {
+    width: 7%; /* Reduce width for likes */
+}
+
+.chatgpt-column {
+    width: 8%; /* Reduce width for ChatGPT link */
+}
+
+/* Scaling Media */
+.media-container {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.media-container img, .media-container video {
+    max-width: 100%; /* Fill the allocated column width */
+    max-height: 100%; /* Ensure aspect ratio is maintained */
+    object-fit: contain; /* Prevent distortion */
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+
+/* Styling Table Headers */
+th {
+    background: #335aa7;
+    color: rgb(66, 49, 197);
+    font-weight: bold;
+    text-align: left;
+}
+
+/* Responsive Adjustments for Smaller Screens */
+@media (max-width: 768px) {
+    table th, table td {
+        font-size: 0.9rem; /* Adjust font size for smaller screens */
+    }
+
+    .engineered-prompt {
+        width: 30%;
+    }
+
+    .media-column {
+        width: 25%;
+    }
+}
+
