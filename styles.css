@@ -1054,3 +1054,40 @@ th {
     }
 }
 
+/* Media Container Styling */
+.media-container {
+    width: 100%; /* Full width of the allocated column */
+    height: 150px; /* Fixed height */
+    position: relative; /* Ensures proper stacking */
+    overflow: hidden; /* Hide overflow content initially */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9; /* Optional background for better visibility */
+    transition: transform 0.3s ease, z-index 0.3s ease; /* Smooth hover effects */
+}
+
+/* Media Styling */
+.media-container img,
+.media-container video {
+    width: 100%; /* Fit within container width */
+    height: 100%; /* Fit within container height */
+    object-fit: cover; /* Maintain aspect ratio while filling space */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects */
+}
+
+/* Hover Effect for Enhanced Visibility */
+.media-container:hover {
+    z-index: 1000; /* Bring container to the top of the stacking order */
+    transform: scale(0.5); /* Slight zoom for emphasis (15% larger) */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Add subtle shadow for emphasis */
+    position: relative; /* Ensures it can overlap other elements */
+    overflow: visible; /* Allow media to extend beyond its bounds */
+}
+
+/* Hover Effect for Media Content */
+.media-container:hover img,
+.media-container:hover video {
+    transform: scale(1.1); /* Further zoom the media itself slightly */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Add depth with shadow */
+}
+
