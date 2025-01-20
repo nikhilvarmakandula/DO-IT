@@ -138,7 +138,7 @@
             {% for prompt in prompts %}
             <tr>
                 <td>{{ prompt.Prompt_Purpose }}</td>
-                <td>{{ prompt.Engineered_Prompt }}</td>
+                <td class="engineered-prompt-content">{{ prompt.Engineered_Prompt }}</td>
                 <td>{{ prompt.Prompt_Type }}</td>
                 <td>
                     {% if prompt.file_url %}
@@ -170,6 +170,7 @@
         </tbody>
     </table>
 </div>
+
     
         </section>
     </main>
