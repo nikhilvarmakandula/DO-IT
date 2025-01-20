@@ -5,7 +5,7 @@
     box-sizing: border-box;
 }
 body {
-    font-family: SFMono-Regular;
+    font-family: proxima-nova,sans-serif !important;
     line-height: 1.6;
     color: #333;
     background-color:#fff;
@@ -18,7 +18,7 @@ a {
 
 /* Header */
 header {
-    background:rgba(66,66,66,.95);
+    background:rgba(58, 55, 55, 0.95);
     color: #fff;
     position: sticky;
     top: 0;
@@ -31,7 +31,7 @@ header {
 .logo {
     font-size: 1.75rem;
     font-weight: 700;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family:proxima-nova,sans-serif !important;
 }
 .logo span {
     color: #fff;
@@ -50,8 +50,8 @@ nav ul {
 }
 nav ul li a {
     color:#fff;
-    font-weight:800;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight:550;
+    font-family:proxima-nova,sans-serif !important;
     transition: color 0.3s;
 }
 nav ul li a:hover {
@@ -83,7 +83,7 @@ nav ul li a:hover {
 .hero button {
     padding: 0.5rem 1.25rem;
     background:#4a4a4a;
-    font-family: SFMono-Regular ;
+    font-family: proxima-nova,sans-serif !important ;
     color:#fff;
     border: none;
     border-radius: 50px;
@@ -149,7 +149,7 @@ form input, form select, form textarea {
     width: 65%; 
     padding: 1rem;
     font-size: 1rem;
-    font-family: inherit; 
+    font-family: proxima-nova,sans-serif !important; 
     border: 2px solid #ccc;
     border-radius: 50px; 
     background-color: #f9f9f9;
@@ -222,7 +222,7 @@ table th {
     border: 1px solid #ddd;
     border-radius: 50px;
     resize: vertical;
-    min-height: 50px;
+    min-height: 100px;
 }
 .form-group textarea:focus {
     border-color: #10b981;
@@ -276,7 +276,7 @@ table th {
     margin-top: 2rem;
     font-size:xx-large;
     font-weight: 300;
-    font-family:inherit; 
+    font-family:proxima-nova,sans-serif !important; 
 }
 
 /* Footer 2 Style */
@@ -292,7 +292,7 @@ table th {
 .vision-section {
     background-color: #fff;
     text-align: center;
-    padding: 2rem 1rem;
+    padding: 4rem 1rem;
     margin-top: -1rem;
 }
 .vision-section p {
@@ -322,6 +322,8 @@ table th {
     align-items: center; 
     padding: 2rem;
     box-sizing: border-box; 
+    background-color: #EAEAEA; 
+
 }
 
 .warehouse-prompt-wrapper table {
@@ -337,7 +339,7 @@ table th {
     padding: 0.75rem;
     border:inset;
     text-align: left;
-    border: 2px solid #333; /* Border color */
+    border: 5px solid #333; /* Border color */
     border-radius: 50px; 
 }
 
@@ -394,7 +396,7 @@ table td {
     border-radius: 50%;
     font-size: 20px;
     display: flex;
-    font-family: inherit;
+    font-family: proxima-nova,sans-serif !important;
     align-items: center;
     justify-content: center;
     cursor: pointer;
@@ -469,7 +471,7 @@ table td {
     width: 25%; 
     max-width:300px;  
     z-index: 999;  
-    font-family:inherit;
+    font-family:proxima-nova,sans-serif !important;
 }
 
 
@@ -479,7 +481,7 @@ table td {
     color: #333;
     margin-bottom: 15px;
     text-align: center;
-    font-family: inherit;
+    font-family: proxima-nova,sans-serif !important;
     border-radius: 50px;
 }
 
@@ -542,8 +544,8 @@ input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
  /* Submit  feedback button  */
 button[type="submit"] {
     padding: 0.5rem 1.25rem;
-    background:#4a4a4a;
-    font-family: SFMono-Regular ;
+    background:#1e88e5;
+    font-family: proxima-nova,sans-serif !important ;
     color:#fff;
     border: none;
     border-radius: 50px;
@@ -557,7 +559,7 @@ button[type="submit"] {
 
 /* Button hover effect */
 button[type="submit"]:hover {
-    background-color: #1d1c1c;
+    background-color: #1e88e5;
     transform: scale(1.05);
 }
 
@@ -622,7 +624,7 @@ textarea {
 #resource-center {
     background-color: #EAEAEA;
     color:#333;
-    font-family: SFMono-Regular;
+    font-family: proxima-nova,sans-serif !important;
     padding: 50px 20px;
     text-align: center;
 }
@@ -859,4 +861,129 @@ table video {
     z-index: 1000; 
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); 
 }
+.share {
+    background: linear-gradient(145deg, #ffffff, #e6e6e6);
+    border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(58, 55, 55, 0.95);
+    padding: 2rem;
+    margin: 2rem auto;
+    width: 80%;
+    max-width: 800px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.share:hover {
+    transform: scale(1.02);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
 
+.share h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.share p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.share .form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.share .form-group label {
+    display: block;
+    font-size: 1rem;
+    color: rgba(58, 55, 55, 0.95);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.share .form-group textarea,
+.share .form-group select,
+.share .form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    background: #f9f9f9;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.share .form-group textarea:focus,
+.share .form-group select:focus,
+.share .form-group input:focus {
+    border-color: #4caf50;
+    outline: none;
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+}
+
+.share .form-group .file-upload-group {
+    text-align: left;
+}
+
+.share .form-group input[type="file"] {
+    padding: 0.5rem;
+    border: 2px dashed #ddd;
+    border-radius: 10px;
+    background: #f9f9f9;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.share .form-group input[type="file"]:hover {
+    border-color: #4caf50;
+}
+
+.share .share-btn {
+    background: #4caf50;
+    color: white;
+    padding: 0.75rem 2rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.share .share-btn:hover {
+    background: #388e3c;
+    transform: scale(1.05);
+}
+
+/* Responsive Design for Share Section */
+@media (max-width: 768px) {
+    .share {
+        width: 90%;
+    }
+    .share h2 {
+        font-size: 1.75rem;
+    }
+    .share p {
+        font-size: 0.9rem;
+    }
+}
+
+
+/* Error Message Styling */
+.error-message {
+    color: #e74c3c; /* Red color for errors */
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    display: none; /* Initially hidden */
+}
+
+/* Highlight Invalid Fields */
+.form-input:invalid {
+    border-color: #e74c3c;
+    box-shadow: 0 0 4px rgba(231, 76, 60, 0.3);
+}
