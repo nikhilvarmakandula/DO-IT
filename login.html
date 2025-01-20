@@ -14,7 +14,7 @@
             box-sizing: border-box;
         }
         body {
-            font-family: SFMono-Regular;
+            font-family: proxima-nova,sans-serif !important;;
             line-height: 1.6;
             color: #333;
             background-color:#fff;
@@ -29,7 +29,7 @@
 
         /* Header */
         header {
-            background:rgba(66, 66, 66, .9);
+            background:rgba(58, 55, 55, 0.95);
             color: #fff;
             position: sticky;
             top: 0;
@@ -39,20 +39,9 @@
             justify-content: space-between;
             align-items: center;
         }
-        .logo {
-            font-size: 1.75rem;
-            font-weight: 700;
-            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-        }
-        .logo span {
-            color:#fff;
-        }
-        .logo .infinity {
-            color: maroon;
-            margin: 0 0.2rem;
-            font-size: 1.7rem;
-            line-height: 1;
-            vertical-align: middle;
+        .logo img {
+            max-height: 80px;
+            width: auto;
         }
         nav ul {
             list-style: none;
@@ -62,7 +51,7 @@
         nav ul li a {
             color:#fff;
             font-weight: 800;
-            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-family:proxima-nova,sans-serif !important;
             transition: color 0.3s;
         }
         nav ul li a:hover {
@@ -118,7 +107,7 @@
             margin-bottom: 8px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            font-size: 14px;;
+            font-size: 14px;
         }
         .form-group input:focus {
             border-color: #10b981;
@@ -127,7 +116,7 @@
         .login-form button {
             padding: 0.5rem 1.25rem;
             background:#4a4a4a;
-            font-family: SFMono-Regular ;
+            font-family: proxima-nova,sans-serif !important;
             color:#fff;
             border: none;
             border-radius: 50px;
@@ -136,9 +125,8 @@
             width: 30%;
             cursor: pointer;
             transition: transform 0.2s, background 0.3s;
-            align-content: center;
-            display: flex; /* Add flexbox layout */
-            justify-content: center; /* Center horizontally */
+            display: flex;
+            justify-content: center;
             align-items: center; 
             margin: 0 auto;
         }
@@ -199,7 +187,7 @@
     <!-- Header -->
     <header>
         <div class="logo">
-            AI Prompts <span class="infinity">⚡</span><span>Engineered</span>
+            <img src="/static/logo.png" alt="AI Prompts Engineered">
         </div>
         <nav>
             <ul>
@@ -251,7 +239,7 @@
 
     <!-- Footer -->
     <footer>
-        <p style="font-family: Aptos;">&copy; 2024 ENGINEERED PROMPT. All rights reserved.</p>
+        <p style="font-family: proxima-nova,sans-serif !important;">&copy; 2024 ENGINEERED PROMPT. All rights reserved.</p>
     </footer>
 
     <!-- for Show Password -->
