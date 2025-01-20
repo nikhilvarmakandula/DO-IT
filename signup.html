@@ -14,10 +14,10 @@
             box-sizing: border-box;
         }
         body {
-            
+            font-family: proxima-nova,sans-serif !important;
             line-height: 1.6;
             color: #333;
-            background-color:#fff;
+            background-color: #fff;
         }
         a {
             text-decoration: none;
@@ -26,30 +26,19 @@
 
         /* Header */
         header {
-            background:rgba(66,66,66,.9);
+            background:rgba(58, 55, 55, 0.95);
             color: #fff;
             position: sticky;
             top: 0;
             z-index: 1000;
-            padding: 0.5rem 5%;;
+            padding: 0.5rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        .logo {
-            font-size: 1.75rem;
-            font-weight: 700;
-            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-        }
-        .logo span {
-            color:#fff;
-        }
-        .logo .infinity {
-            color: maroon;
-            margin: 0 0.2rem;
-            font-size: 1.7rem;
-            line-height: 1; 
-            vertical-align: middle; 
+        .logo img {
+            max-height: 80px;
+            width: auto;
         }
         nav ul {
             list-style: none;
@@ -57,18 +46,18 @@
             gap: 1.5rem;
         }
         nav ul li a {
-            color:#fff;
-            font-weight:800;
-            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            color: #fff;
+            font-weight: 500;
+            font-family: proxima-nova,sans-serif !important;
             transition: color 0.3s;
         }
         nav ul li a:hover {
-            color:#EAEAEA;
+            color: #EAEAEA;
         }
 
         /* Vision Section */
         .vision-section {
-            background-color:#fff;
+            background-color: #fff;
             text-align: center;
             padding: 2rem 1rem;
             margin-top: -1rem;
@@ -80,12 +69,12 @@
             margin: 0 auto;
         }
         .vision-section b {
-         color:#4a4a4a;
+            color: #4a4a4a;
         }
 
         .hero {
-            background:#EAEAEA;
-            color:#333;
+            background: #EAEAEA;
+            color: #333;
             text-align: center;
             padding: 0.5rem 5%;
         }
@@ -100,11 +89,11 @@
             line-height: 1.8;
             text-align: left;
         }
+
         /* Sign Up Form Styles */
         .container {
             display: flex;
             justify-content: center;
-            font-family: SFMono-Regular;
             align-items: center;
             min-height: 50vh;
             padding-top: 20px;
@@ -116,14 +105,13 @@
             margin: 0 auto;
             padding: 40px;
             background-color: #fff;
-            font-family: SFMono-Regular;
             border-radius: 50px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         .signup-form-heading {
             font-size: 30px;
-            font-weight:bolder;
-            margin-bottom:10px;
+            font-weight: bolder;
+            margin-bottom: 10px;
             text-align: center;
         }
         .signup-form input[type="email"],
@@ -138,20 +126,18 @@
         }
         .signup-form button {
             padding: 0.5rem 1.25rem;
-            background:#4a4a4a;
-            font-family: SFMono-Regular ;
-            color:#fff;
+            background: #4a4a4a;
+            color: #fff;
             border: none;
             border-radius: 50px;
             font-size: 1.2rem;
-            font-weight:300;
+            font-weight: 300;
             width: 30%;
             cursor: pointer;
             transition: transform 0.2s, background 0.3s;
-            align-content: center;
-            display: flex; /* Add flexbox layout */
-            justify-content: center; /* Center horizontally */
-            align-items: center; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
             margin: 0 auto;
         }
         .signup-form button:hover {
@@ -171,9 +157,9 @@
             margin-top: 10px;
         }
 
-        /* Trailer Section (Exactly like the Login Page) */
+        /* Trailer Section */
         .trailer {
-            background-color:rgba(66,66,66,.95);
+            background-color: rgba(66,66,66,.95);
             color: white;
             padding: 40px;
             text-align: center;
@@ -188,7 +174,7 @@
             margin-bottom: 1.5rem;
         }
         .trailer a {
-            background-color:#1d1c1c;
+            background-color: #1d1c1c;
             color: white;
             padding: 10px 20px;
             border-radius: 5px;
@@ -214,17 +200,19 @@
     <!-- Header -->
     <header>
         <div class="logo">
-            AI Prompts <span class="infinity">⚡</span><span>Engineered</span>
+            <a href="/">
+                <img src="/static/logo.png" alt="AI Prompts Engineered" style="max-height: 80px; width: auto;">
+            </a>
         </div>
-        <div class="background-container"></div>
         <nav>
             <ul>
+                <li><a href="/">HOME</a></li>
                 <li><a href="login.html">LOGIN</a></li>
                 <li><a href="signup.html">SIGN UP</a></li>
-                <li><a href="/logout">SIGN OUT</a></li>
             </ul>
         </nav>
     </header>
+    
 
     <!-- Vision Section -->
     <section class="vision-section">
@@ -245,7 +233,6 @@
                 <input type="email" name="email" placeholder="Email Address" required>
                 <input type="password" name="password" id="password" placeholder="Password" required>
                 <input type="password" name="confirm_password" id="confirm_password" placeholder="Re-enter Password" required>
-                <!---- show password checkbox ---->
                 <label>
                     <input type="checkbox" id="show_password" onclick="togglePasswordVisibility()"> Show password
                 </label>
@@ -269,7 +256,7 @@
         <a href="signup.html">Sign Up Now</a>
     </section>
 
-    <!-- JavaScript to Show/Hide Password -->
+    <!-- JavaScript -->
     <script>
         function togglePasswordVisibility() {
             const passwordField = document.getElementById('password');
