@@ -138,7 +138,7 @@
             {% for prompt in prompts %}
             <tr>
                 <td>{{ prompt.Prompt_Purpose }}</td>
-                <td class="engineered-prompt-content">{{ prompt.Engineered_Prompt }}</td>
+                <td>{{ prompt.Engineered_Prompt }}</td>
                 <td>{{ prompt.Prompt_Type }}</td>
                 <td>
                     {% if prompt.file_url %}
@@ -170,7 +170,6 @@
         </tbody>
     </table>
 </div>
-
     
         </section>
     </main>
@@ -264,69 +263,133 @@
   
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-    const shareSection = document.querySelector('.share');
-    const toggleButton = document.querySelector('#toggle-share-btn');
-    const form = document.getElementById('share-prompt-form');
-    
-    // Toggle Share Section
-    shareSection.style.display = 'none'; // Hide Share section initially
-    toggleButton.addEventListener('click', () => {
-        if (shareSection.style.display === 'none') {
-            shareSection.style.display = 'block';
-            toggleButton.textContent = 'Hide Share Your Prompt';
-        } else {
-            shareSection.style.display = 'none';
-            toggleButton.textContent = 'Share Your Prompt';
-        }
-    });
+    document.addEventListener('DOMContentLoaded', () => {
+        // Ensure the Share section is hidden initially
+        const shareSection = document.querySelector('.share');
+        const toggleButton = document.querySelector('#toggle-share-btn');
+        const promptsSection = document.querySelector('.prompts');
 
-    // Form Validation
-    form.addEventListener('submit', (e) => {
-        let isValid = true;
+        shareSection.style.display = 'none'; // Hide Share section initially
 
-        // Clear previous error messages
-        const errorMessages = form.querySelectorAll('.error-message');
-        errorMessages.forEach(error => {
-            error.style.display = 'none';
+        // Toggle Share Section functionality
+        toggleButton.addEventListener('click', () => {
+            if (shareSection.style.display === 'none') {
+                shareSection.style.display = 'block';
+                toggleButton.textContent = 'Hide Share Your Prompt';
+                promptsSection.style.marginTop = '2rem';
+            } else {
+                shareSection.style.display = 'none';
+                toggleButton.textContent = 'Share Your Prompt';
+                promptsSection.style.marginTop = '0';
+            }
         });
 
-        // Validate fields
-        const promptPurpose = document.getElementById('prompt-purpose');
-        const engineeredPrompt = document.getElementById('engineered-prompt');
-        const promptType = document.getElementById('prompt-type');
+        // Existing Like functionality
+        const likeButtons = document.querySelectorAll('.like-button');
+        const currentUserId = 'USER_ID_HERE'; // Replace this with the actual user ID (e.g., from session or backend)
 
-        if (!promptPurpose.value.trim()) {
-            showError(promptPurpose, 'Please enter a valid prompt purpose.', 'purpose-error');
-            isValid = false;
-        }
+        likeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const promptId = button.getAttribute('data-prompt-id');
 
-        if (!engineeredPrompt.value.trim()) {
-            showError(engineeredPrompt, 'Please enter the engineered prompt.', 'engineered-error');
-            isValid = false;
-        }
+                fetch('/like_prompt', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt_id: promptId, user_id: currentUserId })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const likeCount = button.querySelector('.like-count');
+                        likeCount.textContent = data.updated_likes;
+                    }
+                })
+                .catch(err => console.error('Error:', err));
+            });
+        });
 
-        if (!promptType.value) {
-            showError(promptType, 'Please select a prompt type.', 'type-error');
-            isValid = false;
-        }
-
-        if (!isValid) e.preventDefault(); // Stop form submission if validation fails
+        // Feedback form toggle functionality
+        const feedbackButton = document.getElementById('feedback-button');
+        const feedbackForm = document.getElementById('feedback-form');
+        feedbackButton.addEventListener('click', () => {
+            feedbackForm.style.display = feedbackForm.style.display === 'none' || feedbackForm.style.display === '' ? 'block' : 'none';
+        });
+        const hideButton = document.getElementById('hide-feedback-button');
+       // When the feedback button is clicked, show the feedback form and hide the feedback button
+       feedbackButton.addEventListener('click', () => {
+       feedbackForm.style.display = 'block';
+       feedbackButton.style.display = 'none';  // Hide feedback button when form appears
+      });
+      // When the hide button is clicked, hide the feedback form and show the feedback button again
+      hideButton.addEventListener('click', () => {
+      feedbackForm.style.display = 'none';
+      feedbackButton.style.display = 'block';  // Show feedback button again
+     });
+    });
+</script>
+<script>
+    // Log downloads for analytics (optional)
+    document.querySelectorAll('.resource-card .btn').forEach((button) => {
+        button.addEventListener('click', () => {
+            console.log(`Resource downloaded: ${button.getAttribute('href')}`);
+        });
+    });
+</script>
+<script>
+    // Interactive Tutorial using Intro.js
+    document.getElementById("startTutorial").addEventListener("click", () => {
+        introJs().setOptions({
+            steps: [
+                { intro: "Welcome to the tutorial! Learn how to interact with prompts." },
+                { element: '#startTutorial', intro: "Click here to start the interactive journey." }
+            ]
+        }).start();
     });
 
-    // Function to show error messages
-    function showError(element, message, errorId) {
-        const errorMessage = document.getElementById(errorId);
-        errorMessage.textContent = message;
-        errorMessage.style.display = 'block';
-        element.style.borderColor = '#e74c3c'; // Highlight the field with red border
+    // Video Tutorial with Interactive Quiz
+    const video = document.getElementById("tutorialVideo");
+    video.addEventListener("timeupdate", () => {
+        if (video.currentTime > 10 && video.currentTime < 15) {
+            document.getElementById("quiz").style.display = "block";
+            video.pause();
+        }
+    });
 
-        // Reset error styling after 5 seconds
-        setTimeout(() => {
-            errorMessage.style.display = 'none';
-            element.style.borderColor = ''; // Reset border color
-        }, 5000);
+    function checkAnswer(answer) {
+        const message = answer === '1' 
+            ? "Correct! Prompt engineering optimizes AI prompts."
+            : "Incorrect. Try again!";
+        alert(message);
+        document.getElementById("quiz").style.display = "none";
+        video.play();
     }
-});
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const closeModal = document.getElementById('closeModal');
+        const images = document.querySelectorAll('.prompt-image');
+
+        // Open modal on image click
+        images.forEach(image => {
+            image.addEventListener('click', () => {
+                modal.style.display = 'block';
+                modalImg.src = image.src;
+            });
+        });
+
+        // Close modal on close button click
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        // Close modal on outside click
+        modal.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    });
 
 </script>
+
