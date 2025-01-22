@@ -2,10 +2,21 @@ from flask import Flask, render_template, request, redirect, url_for, jsonify, s
 from firebase_admin import credentials, initialize_app, firestore, storage
 import uuid
 from datetime import datetime
+from flask_mail import Mail, Message
+
 
 # Initialize Flask app
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Replace with a secure key
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = 'nikhilvarma.kandula@gmail.com'  # Replace with your email
+app.config['MAIL_PASSWORD'] = 'wcrd vrsa nmnq acqp'  # Replace with app-specific password
+app.config['MAIL_DEFAULT_SENDER'] = 'your_email@gmail.com'
+
+mail = Mail(app)
+
 
 # Initialize Firebase Admin
 cred = credentials.Certificate('engineeredPrompt.json')
@@ -23,8 +34,6 @@ bucket = storage.bucket()
 def get_prompt_users_collection():
     return db.collection("users")
 
-
-# Routes
 
 @app.route('/')
 def home():
@@ -194,6 +203,30 @@ def like_prompt():
     except Exception as e:
         print(f"Error updating likes: {e}")
         return jsonify({'success': False, 'message': 'An error occurred.'})
+
+
+@app.route('/submit-feedback', methods=['POST'])
+def submit_feedback():
+    feedback = request.form.get('feedback', '').strip()
+    user_email = request.form.get('email', '').strip()
+
+    if not feedback:
+        return jsonify({'success': False, 'message': 'Feedback cannot be empty'}), 400
+
+    try:
+        # Prepare the email
+        subject = "New Feedback from Website"
+        body = f"Feedback: {feedback}\n\nUser Email: {user_email or 'Not Provided'}"
+        msg = Message(subject, recipients=['nikhilvarma.kandula@gmail.com'])  # Replace with your email
+        msg.body = body
+
+        # Send the email
+        mail.send(msg)
+        return jsonify({'success': True, 'message': 'Feedback submitted successfully!'}), 200
+    except Exception as e:
+        print(f"Error sending feedback email: {e}")  # Logs the exception to the console
+        return jsonify({'success': False, 'message': f"An error occurred: {e}"}), 500
+
 
 
 if __name__ == '__main__':
