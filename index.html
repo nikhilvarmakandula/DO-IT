@@ -125,6 +125,12 @@
         <button type="submit" id="submit-prompt-btn" class="share-btn">Share Prompt</button>
     </form>
 </section>
+<div class="search-bar">
+    <input type="text" placeholder="Search ">
+    <select>
+        <option>Filter</option>
+    </select>
+</div>
 
 <div class="warehouse-prompt-wrapper">
     <table>
@@ -228,23 +234,23 @@
       <div class="footer-section">
         <h3>Company</h3>
         <ul>
-          <li><a href="http://127.0.0.1:5000">About Us</a></li>
-          <li><a href="#">Work with Us</a></li>
+          <li><a href="aboutus.html">About Us</a></li>
+          <li><a href="workwithus.html">Work with Us</a></li>
           <li><a href="http://127.0.0.1:5000">ENGINEERED PROMPT</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h3>Resources</h3>
         <ul>
-          <li><a href="#requirements">System Requirements</a></li>
-          <li><a href="#privacy">Privacy Policy</a></li>
-          <li><a href="#terms">Terms of Use</a></li>
+          <li><a href="systemrequirements.html">System Requirements</a></li>
+          <li><a href="Privacypolicy.html">Privacy Policy</a></li>
+          <li><a href="termsofuse.html">Terms of Use</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h3>Connect</h3>
         <ul>
-          <li><a href="mailto:engineeredprompt@gmail.com"">Contact Us</a></li>
+          <li><a href="contactus.html">Contact Us</a></li>
         </ul>
       </div>
       <div class="footer-section">
@@ -396,4 +402,33 @@
     });
 
 </script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const searchInput = document.querySelector('.search-bar input');
+        const filterDropdown = document.querySelector('.search-bar select');
+        const tableRows = document.querySelectorAll('.warehouse-prompt-wrapper tbody tr');
 
+        const filterTable = () => {
+            const searchText = searchInput.value.toLowerCase();
+            const filterValue = filterDropdown.value.toLowerCase();
+
+            tableRows.forEach(row => {
+                const purposeText = row.cells[0].textContent.toLowerCase();
+                const promptText = row.cells[1].textContent.toLowerCase();
+
+                const matchesSearch = searchText === '' || purposeText.includes(searchText) || promptText.includes(searchText);
+                const matchesFilter = filterValue === 'filter' || purposeText.includes(filterValue) || promptText.includes(filterValue);
+
+                // Show or hide the row based on the filter criteria
+                if (matchesSearch && matchesFilter) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        };
+
+        // Event listeners for search and filter inputs
+        searchInput.addEventListener('input', filterTable);
+        filterDropdown.addEventListener('change', filterTable);
+    });
