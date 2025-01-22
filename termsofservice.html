@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIPROMPTBRO</title>
+    <link rel="stylesheet" href="/static/css/common.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<style>
+
+header {
+    display: flex;
+    justify-content: space-between; /* Spread out the logo and links */
+    align-items: center; /* Vertically center the content */
+    padding: 10px 20px; /* Adjust padding as needed */
+}
+
+.header-links {
+    display: flex;
+    justify-content: flex-end; /* Align links to the right */
+}
+
+header ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+header li {
+    margin-left: 15px; /* Space between the links */
+}
+
+header a {
+    text-decoration: none;
+    color: black; /* Adjust link color as needed */
+    font-weight: bold; /* Optional: make links bold */
+}
+.white-link {
+    color: white;
+}
+
+</style>
+
+
+    
+<body>
+
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="/static/aiprompt1.png" alt="Engineered Promptss" class="logo-image">           
+        </div>
+        <div class="header-links">
+            <ul>
+                <li><a href="login.html" class="white-link">Login</a></li>
+                <li><a href="signup.html" class="white-link">Sign Up</a></li>
+                <li><a href="/logout" class="white-link">Sign Out</a></li>
+            </ul>
+        </div>
+    </header>
+
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="text-container">
+            <h2 style="margin-top:20px;margin-left:215px;font-family: 'Aptos'; "> Terms of Use</h2>
+
+            <p class="hero-description">Welcome to Engineered Prompt! These terms of service govern your use of our products. References to our products in this terms of service refer to all of our products and services, including our apps, websites, and software.
+            In addition to these terms, we publish a <a class="footer-linkt" href="privacypolicy.html">Privacy Policy</a>  that describes how we process, collect, use, and protect your information.
+        </p>
+       
+    </div>
+
+    </div>
+
+        {% include 'footer.html' %}   
+ 
+    <script>
+ 
+ function navigateToIndex() {
+        window.location.href = "/";
+    }
+ // Add click event listener to the logo to show the main content
+        document.querySelector(".logo").addEventListener("click", navigateToIndex);
+   document.addEventListener("DOMContentLoaded", () => {
+    // Add click event listener to the logo to show the main content
+
+    // Add click event listener to the menu icon to toggle the navigation menu
+    const menuIcon = document.querySelector('nav i.fa-bars');
+    const navMenu = document.querySelector('nav ul');
+
+    menuIcon.addEventListener('click', () => {
+        navMenu.classList.toggle('open');
+    });
+		  // Click event listener for the document to close the menu
+  document.addEventListener("click", (event) => {
+    if (!menuIcon.contains(event.target) && !navMenu.contains(event.target)) {
+      // Click occurred outside of the menu button and menu
+      navMenu.classList.remove("open");
+    }
+  });
+});
+    </script>
+</body>
+
+</html>
+
