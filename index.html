@@ -125,12 +125,16 @@
         <button type="submit" id="submit-prompt-btn" class="share-btn">Share Prompt</button>
     </form>
 </section>
-<div class="search-bar">
-    <input type="text" placeholder="Search ">
-    <select>
-        <option>Filter</option>
+<div class="search-bar" style="margin-bottom: 20px;">
+    <input type="text" id="search-input" placeholder="Search by Prompt Purpose or Engineered Prompt" />
+    <select id="filter-dropdown">
+        <option value="">All Prompt Types</option>
+        <option value="Lowcode/Nocode">Lowcode/NOCode</option>
+        <option value="Image Reference">Image Reference</option>
+        <option value="Video Reference">Video Reference</option>
     </select>
 </div>
+
 
 <div class="warehouse-prompt-wrapper">
     <table>
@@ -403,32 +407,33 @@
 
 </script>
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const searchInput = document.querySelector('.search-bar input');
-        const filterDropdown = document.querySelector('.search-bar select');
-        const tableRows = document.querySelectorAll('.warehouse-prompt-wrapper tbody tr');
+document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('search-input');
+    const filterDropdown = document.getElementById('filter-dropdown');
+    const tableRows = document.querySelectorAll('.warehouse-prompt-wrapper tbody tr');
 
-        const filterTable = () => {
-            const searchText = searchInput.value.toLowerCase();
-            const filterValue = filterDropdown.value.toLowerCase();
+    function filterTable() {
+        const searchText = searchInput.value.toLowerCase();
+        const filterValue = filterDropdown.value.toLowerCase();
 
-            tableRows.forEach(row => {
-                const purposeText = row.cells[0].textContent.toLowerCase();
-                const promptText = row.cells[1].textContent.toLowerCase();
+        tableRows.forEach(row => {
+            const purposeText = row.cells[0].textContent.toLowerCase();
+            const engineeredPromptText = row.cells[1].textContent.toLowerCase();
+            const promptTypeText = row.cells[2].textContent.toLowerCase();
 
-                const matchesSearch = searchText === '' || purposeText.includes(searchText) || promptText.includes(searchText);
-                const matchesFilter = filterValue === 'filter' || purposeText.includes(filterValue) || promptText.includes(filterValue);
+            const matchesSearch =
+                !searchText || purposeText.includes(searchText) || engineeredPromptText.includes(searchText);
+            const matchesFilter = !filterValue || promptTypeText === filterValue;
 
-                // Show or hide the row based on the filter criteria
-                if (matchesSearch && matchesFilter) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
-            });
-        };
+            if (matchesSearch && matchesFilter) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    }
 
-        // Event listeners for search and filter inputs
-        searchInput.addEventListener('input', filterTable);
-        filterDropdown.addEventListener('change', filterTable);
-    });
+    searchInput.addEventListener('input', filterTable);
+    filterDropdown.addEventListener('change', filterTable);
+});
+</script>
