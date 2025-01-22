@@ -99,14 +99,15 @@
     <form id="share-prompt-form" action="/submit_prompt" method="POST" enctype="multipart/form-data">
         <div class="form-group">
             <label for="prompt-purpose" class="form-label">Prompt Purpose:</label>
-            <textarea id="prompt-purpose" name="prompt_purpose" class="form-input" required></textarea>
+            <textarea id="prompt-purpose" name="prompt_purpose" class="form-input auto-resize" required></textarea>
             <div class="error-message" id="purpose-error"></div>
         </div>
         <div class="form-group">
             <label for="engineered-prompt" class="form-label">Engineered Prompt:</label>
-            <textarea id="engineered-prompt" name="engineered_prompt" class="form-input" required></textarea>
+            <textarea id="engineered-prompt" name="engineered_prompt" class="form-input auto-resize" required></textarea>
             <div class="error-message" id="engineered-error"></div>
         </div>
+        
         <div class="form-group">
             <label for="prompt-type" class="form-label">Prompt Type:</label>
             <select id="prompt-type" name="prompt_type" class="form-input" required>
@@ -435,5 +436,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     searchInput.addEventListener('input', filterTable);
     filterDropdown.addEventListener('change', filterTable);
+});
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const textareas = document.querySelectorAll('.auto-resize');
+
+    textareas.forEach(textarea => {
+        textarea.style.overflow = 'hidden'; // Prevent scrollbars
+        textarea.style.resize = 'none';    // Optional: Prevent manual resizing
+
+        const adjustHeight = (textarea) => {
+            textarea.style.height = 'auto'; // Reset height to calculate new height
+            textarea.style.height = `${textarea.scrollHeight}px`;
+        };
+
+        // Adjust height on input and initial load
+        textarea.addEventListener('input', () => adjustHeight(textarea));
+        adjustHeight(textarea);
+    });
 });
 </script>
