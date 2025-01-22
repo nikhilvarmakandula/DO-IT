@@ -21,7 +21,7 @@ mail = Mail(app)
 # Initialize Firebase Admin
 cred = credentials.Certificate('engineeredPrompt.json')
 firebase_app = initialize_app(cred, {
-    'storageBucket': 'disharaengineeredprompt.appspot.com'  # Correct bucket name
+    'storageBucket': 'disharaengineeredprompt.firebasestorage.app'  # Correct bucket name
 })
 
 # Firestore client
@@ -50,6 +50,10 @@ def home():
     return render_template('index.html', is_logged_in=is_logged_in, prompts=prompts)
 
 
+
+@app.route('/aboutus.html')
+def about_us():
+    return render_template('aboutus.html')
 
 @app.route('/signup.html')
 def signup():
