@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - EngineeredPrompt</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f1f3f6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background-color: #2c3e50;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        header nav {
+            display: flex;
+            justify-content: center;
+        }
+        header nav a {
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: background-color 0.3s;
+        }
+        header nav a:hover {
+            background-color: #3498db;
+            border-radius: 5px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 36px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        h2 {
+            font-size: 28px;
+            color: #3498db;
+            margin-bottom: 15px;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section ul {
+            padding-left: 20px;
+        }
+        .section ul li {
+            margin-bottom: 10px;
+        }
+        .cookie-consent {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            display: none;
+        }
+        .cookie-consent button {
+            background-color: #3498db;
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .cookie-consent button:hover {
+            background-color: #2980b9;
+        }
+        .footer {
+            text-align: center;
+            font-size: 14px;
+            color: #888;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #eaeaea;
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 28px;
+            }
+            h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Navigation Bar -->
+    <header>
+        <nav>
+            <a href="#information">Information</a>
+            <a href="#use">How We Use</a>
+            <a href="#cookies">Cookies</a>
+            <a href="#rights">Your Rights</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Privacy Policy Content -->
+    <div class="container">
+        <h1>Privacy Policy</h1>
+
+        <div class="section" id="information">
+            <h2>1. Information We Collect</h2>
+            <p>We collect the following types of personal and non-personal information:</p>
+            <ul>
+                <li><strong>Personal Information:</strong> Such as your name, email address, and contact information when you create an account or contact us.</li>
+                <li><strong>Usage Data:</strong> Includes details about your interactions with our website, such as IP address, browser type, and device information.</li>
+                <li><strong>Cookies:</strong> Small files placed on your device to enhance user experience, which are used to remember your preferences.</li>
+            </ul>
+        </div>
+
+        <div class="section" id="use">
+            <h2>2. How We Use Your Information</h2>
+            <p>Your information is used to:</p>
+            <ul>
+                <li>Provide and improve our website services.</li>
+                <li>Communicate with you regarding your account or requests.</li>
+                <li>Analyze trends and usage to optimize user experience.</li>
+                <li>Comply with legal obligations and protect against fraud.</li>
+            </ul>
+        </div>
+
+        <div class="section" id="cookies">
+            <h2>3. Cookies</h2>
+            <p>We use cookies for the following reasons:</p>
+            <ul>
+                <li>To enhance the functionality and performance of our website.</li>
+                <li>To personalize your browsing experience.</li>
+                <li>To analyze website traffic and usage patterns.</li>
+            </ul>
+            <p>You can control your cookie preferences through your browser settings.</p>
+        </div>
+
+        <div class="section" id="rights">
+            <h2>4. Your Data Protection Rights</h2>
+            <p>Depending on your location, you may have the following rights regarding your personal data:</p>
+            <ul>
+                <li>Access the personal data we hold about you.</li>
+                <li>Request corrections or deletion of your data.</li>
+                <li>Object to or restrict the processing of your data.</li>
+                <li>Request a copy of your data in a commonly used format.</li>
+            </ul>
+        </div>
+
+        <div class="footer" id="contact">
+            <p>If you have any questions regarding this Privacy Policy or our data practices, please contact us at <a href="mailto:support@engineeredprompt.com">support@engineeredprompt.com</a>.</p>
+        </div>
+    </div>
+
+    <!-- Cookie Consent Pop-up -->
+    <div class="cookie-consent" id="cookie-consent">
+        <p>We use cookies to improve your experience. By using this website, you agree to our <a href="#privacy-policy" style="color: white;">Privacy Policy</a>.</p>
+        <button id="accept-cookies">I Accept</button>
+    </div>
+
+    <script>
+        // Cookie Consent Logic
+        if (!localStorage.getItem('cookieConsent')) {
+            document.getElementById('cookie-consent').style.display = 'block';
+        }
+
+        document.getElementById('accept-cookies').addEventListener('click', function() {
+            localStorage.setItem('cookieConsent', 'true');
+            document.getElementById('cookie-consent').style.display = 'none';
+        });
+    </script>
+
+</body>
+</html>
