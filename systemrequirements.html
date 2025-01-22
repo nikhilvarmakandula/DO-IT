@@ -1,0 +1,167 @@
+# Create an HTML file for the system requirements section
+
+system_requirements_html = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Requirements - EngineeredPrompt</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f1f3f6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background-color: #2c3e50;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        header nav {
+            display: flex;
+            justify-content: center;
+        }
+        header nav a {
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: background-color 0.3s;
+        }
+        header nav a:hover {
+            background-color: #3498db;
+            border-radius: 5px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 36px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        h2 {
+            font-size: 28px;
+            color: #3498db;
+            margin-bottom: 15px;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section ul {
+            padding-left: 20px;
+        }
+        .section ul li {
+            margin-bottom: 10px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 14px;
+            color: #888;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #eaeaea;
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 28px;
+            }
+            h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Navigation Bar -->
+    <header>
+        <nav>
+            <a href="#introduction">Introduction</a>
+            <a href="#license">License</a>
+            <a href="#use-restrictions">Use Restrictions</a>
+            <a href="#account">Account Responsibilities</a>
+            <a href="#ai-services">AI Services</a>
+            <a href="#privacy">Privacy & Data</a>
+            <a href="#disclaimers">Disclaimers</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- System Requirements Content -->
+    <div class="container">
+        <h1>System Requirements</h1>
+
+        <div class="section" id="system-requirements">
+            <h2>1. General Requirements</h2>
+            <ul>
+                <li>Operating System: Windows 10 or higher, macOS Mojave or higher, or Linux (Ubuntu 18.04 or higher)</li>
+                <li>Browser: Google Chrome (latest version), Mozilla Firefox (latest version), Safari (latest version), or Microsoft Edge (latest version)</li>
+                <li>Internet: Stable internet connection with a minimum of 5 Mbps download speed</li>
+                <li>Screen Resolution: 1280 x 720 pixels or higher (for optimal display of the platform interface)</li>
+            </ul>
+
+            <h2>2. AI Services and Model Interaction</h2>
+            <ul>
+                <li>RAM: Minimum 8 GB (16 GB or more recommended for smoother AI service usage)</li>
+                <li>CPU: Intel i5 (8th generation) or equivalent, or higher (for faster processing of tasks)</li>
+                <li>GPU: For optimal use of AI-based services (e.g., prompt engineering or machine learning tasks), we recommend a system with a dedicated GPU, such as Nvidia GTX 1650 or higher (optional for basic use, but necessary for intensive tasks)</li>
+                <li>Storage: At least 10 GB of free disk space for storing project files, data, and results (SSD recommended for faster performance)</li>
+            </ul>
+
+            <h2>3. Software Requirements</h2>
+            <ul>
+                <li>For AI Services and Prompt Engineering: Python 3.8 or higher (for custom models or integrations)</li>
+                <li>AI Models: Docker (recommended for isolated environments), Node.js (if interacting with EngineeredPrompt API), and Git (for version control of AI projects)</li>
+                <li>Third-party Tools: Any IDE (Integrated Development Environment) like Visual Studio Code, PyCharm, or Sublime Text for coding and project management (optional but recommended)</li>
+            </ul>
+
+            <h2>4. Mobile Requirements (for Mobile Web Usage)</h2>
+            <ul>
+                <li>Operating System: iOS 11 or higher, Android 8.0 or higher</li>
+                <li>Browser: Safari for iOS, Google Chrome for Android (latest versions recommended)</li>
+            </ul>
+
+            <h2>5. Additional Recommendations</h2>
+            <ul>
+                <li>For collaborative work, it is recommended to use Google Workspace, Microsoft Office 365, or any compatible cloud storage service to manage shared projects and data efficiently.</li>
+                <li>Regular software updates should be applied to ensure compatibility with the latest features and security updates of EngineeredPrompt.</li>
+            </ul>
+
+            <p>If you experience any issues with meeting these system requirements, please contact our support team for further assistance.</p>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2025 EngineeredPrompt. All rights reserved.</p>
+        </div>
+    </div>
+
+</body>
+</html>
+"""
+
+# Save the HTML to a file
+file_path = '/mnt/data/system_requirements.html'
+
+with open(file_path, 'w') as file:
+    file.write(system_requirements_html)
+
+file_path
