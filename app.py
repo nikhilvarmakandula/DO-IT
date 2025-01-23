@@ -48,13 +48,15 @@ def home():
         prompts = []
 
     return render_template('index.html', is_logged_in=is_logged_in, prompts=prompts)
-
-
-
 @app.route('/aboutus.html')
 def about_us():
     return render_template('aboutus.html')
-
+@app.route('/Privacypolicy.html')
+def Privacypolicy():
+    return render_template('Privacypolicy.html')
+@app.route('/contactus.html')
+def contact_us():
+    return render_template('contactus.html')
 @app.route('/signup.html')
 def signup():
     """Render the signup page."""
