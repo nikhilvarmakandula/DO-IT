@@ -1135,7 +1135,7 @@ th {
 }
 
 .search-bar input {
-    flex: 0.5; /* Input field takes the majority of the space within 50% */
+    flex: 1.5; /* Input field takes the majority of the space within 50% */
     text-align:left;
 }
 
@@ -1154,3 +1154,5 @@ th {
         color:#333; /* Adjust the color to your preference */
         opacity: 1; /* Ensures full visibility of the placeholder */
     }
+
+    
