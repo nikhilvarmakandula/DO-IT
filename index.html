@@ -48,28 +48,29 @@
             <ul>
                 <li><a href="/">HOME</a></li>
                 {% if not is_logged_in %}
+                    <li><a href="premiumprompts.html">PREMIUM</a></li>
                     <li><a href="login.html">LOGIN</a></li>
                     <li><a href="signup.html">SIGN UP</a></li>
-                {% else %}
+                    {% else %}
                     <li><a href="/logout">SIGN OUT</a></li>
-                {% endif %}
-            </ul>
+                    <li><a href="premiumprompts.html">PREMIUM</a></li>
+                    {% endif %}
+               </ul>
         </nav>
     </header>
     
     
-    
     <!-- Vision Section -->
     <section class="vision-section">
-        <p><b>OUR VISION:</b> At the forefront of AI, we firmly believe Engineered Prompts will play a vital role. This platform is an honest attempt to build an Engineered prompt warehouse to achieve PROMPT DRIVEN, Business Critical, NO-CODE/LOW-CODE Solutions.</p>
+        <p><b>OUR VISION:</b> Engineered Prompts will revolutionize AI-driven solutions. This platform builds an <b>Engineered Prompt Warehouse</b> to enable <b>Prompt-Driven, Business-Critical, No-Code/Low-Code</b> solutions. Our goal is to deliver Comprehensive, Structured prompts that can be customized to build up on and drive efficiency and time saving across industries.</p>
     </section>
-
+    
     <section style="
     position: relative;
     text-align: center;
     background: url('/static/info.jpg') no-repeat center center; 
     background-size: cover; 
-    padding: 5rem 2rem; 
+    padding: 2rem 2rem; 
     color: #ffffff; 
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9);">
     <!-- Overlay for better text visibility -->
@@ -83,50 +84,62 @@
         z-index: 1;">
     </div>
 
-    <!-- Content -->
-    <div style="position: relative; z-index: 2;">
-        <h1 style="font-size: 1.8rem; font-weight: bold; margin-bottom: 1rem;">
-            Discover and Share "Engineered" AI Prompts
-        </h1>
-        <p style="font-size: 1.2rem; margin-bottom: 2rem;">
-            It is a thrilling experience to Engineer a Business and Machine critical prompt! 
-            We have an opportunity to Experience The thrill each time we share an Engineered prompt. 
-            Collaborate and innovate with the community!
-        </p>
-        
-        <!-- Button for not logged-in users -->
-        {% if not is_logged_in %}
-            <a href="login.html" style="
-                display: inline-block;
-                padding: 0.8rem 2rem;
-                font-size: 1.2rem;
-                background: #383838;
-                color: #ffffff;
-                border-radius: 50px;
-                text-decoration: none;
-                font-weight: bold;
-                cursor: pointer;
-                margin-right: 1rem;">
-                <b>Explore Our Prompts</b>
-            </a>
-        {% endif %}
-        
-        <!-- Button for logged-in users pointing to the table -->
-        {% if is_logged_in %}
-            <a href="#warehouse-prompt-wrapper" style="
-                display: inline-block;
-                padding: 0.8rem 2rem;
-                font-size: 1.2rem;
-                background: #383838;
-                color: #ffffff;
-                border-radius: 50px;
-                text-decoration: none;
-                font-weight: bold;
-                cursor: pointer;">
-                <b>Explore Our Prompts</b>
-            </a>
-        {% endif %}
-    </div>
+<!-- Content -->
+<div style="position: relative; z-index: 2; text-align: center;">
+    <h1 style="font-size: 1.8rem; font-weight: bold;margin-bottom: 1.5rem;color:#FFE680; font-family: inherit;">
+        Discover and Share 'Engineered' AI Prompts
+    </h1>
+
+    <p style="font-size: 1.4rem; font-weight: bold; margin-bottom: 1rem;font-family:  'Anton', sans-serif;">
+        <span class="highlight"> GREATLY ENGINEERED PROMPTS </span>could produce GREAT PRODUCT at a CLICK!
+    </p>
+
+    <p style="font-size: 1.4rem; font-weight: bold; margin-bottom: 1rem;font-family:  'Anton', sans-serif;">
+        We drive<span class="highlight"> PROMPT-DRIVEN INTELLIGENCE</span>, leading breakthrough B2B and B2C innovations
+     </p>
+
+     <p style="font-size: 1.4rem; font-weight: bold; margin-bottom: 1rem;font-family:  'Anton', sans-serif;;">
+        A Curated Critical Prompt generates Business-Critical Solutions, impacting industries.
+    </p>
+
+    <p style="font-size: 1.4rem; font-weight: bold; margin-bottom: 1rem;font-family:  'Anton', sans-serif;">
+        Our mission is No-Code/Low-Code Enablement, delivering<span class="highlight"> AI PROMPT SOLUTIONS </span> across all sectors.
+    </p>
+
+    <!-- Button for not logged-in users -->
+    {% if not is_logged_in %}
+        <a href="login.html" style="
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            font-size: 1.2rem;
+            background: #201f1f;
+            color: #ffffff;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            margin-right: 1rem;">
+            <b>Explore Our Prompts</b>
+        </a>
+    {% endif %}
+    
+    <!-- Button for logged-in users pointing to the table -->
+    {% if is_logged_in %}
+        <a href="#warehouse-prompt-wrapper" style="
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            font-size: 1.2rem;
+            background: #506349;
+            color: #ffffff;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;">
+            <b>Explore Our Prompts</b>
+        </a>
+    {% endif %}
+</div>
+
 </section>
 
 
@@ -170,7 +183,16 @@
                 <option value="" selected disabled>SELECT PROMPT TYPE</option>
                 <option value="LOW-CODE/NO-CODE">LOW-CODE/NO-CODE PROMPT</option>
                 <option value="IMAGE GENERATION PROMPT">IMAGE GENERATION PROMPT</option>
-                <option value="IMAGE GENERATION PROMPT">VIDEO GENERATION PROMPT</option>
+                <option value="VIDEO GENERATION PROMPT">VIDEO GENERATION PROMPT</option>
+                <option value="AUDIO/MUSIC GENERATION PROMPT">AUDIO/MUSIC GENERATION PROMPT</option>
+                <option value="HEALTH PROMPT">HEALTH PROMPT</option>
+                <option value="EDUCATION PROMPT">EDUCATION PROMPT</option>
+                <option value="FINANCE">FINANCE PROMPT</option>
+                <option value="BUSINESS PROMPT">BUSINESS PROMPT</option>
+                <option value="LEGAL PROMPT">LEGAL PROMPT</option>
+                <option value="TRAVEL PROMPT">TRAVEL PROMPT</option>
+                <option value="MARKETING PROMPT">MARKETING PROMPT</option>
+                <option value="SOCIAL MEDIA PROMPT">SOCIAL MEDIA PROMPT</option>
             </select>
             <div class="error-message" id="type-error"></div>
 
@@ -188,7 +210,16 @@
         <option value="">ALL PROMPT TYPES</option>
         <option value="LOW-CODE/NO-CODE">LOW-CODE/NO-CODE PROMPT</option>
         <option value="IMAGE GENERATION PROMPT">IMAGE GENERATION PROMPT</option>
-        <option value="IMAGE GENERATION PROMPT">VIDEO GENERATION PROMPT</option>
+        <option value="VIDEO GENERATION PROMPT">VIDEO GENERATION PROMPT</option>
+        <option value="AUDIO/MUSIC GENERATION PROMPT">AUDIO/MUSIC GENERATION PROMPT</option>
+        <option value="HEALTH PROMPT">HEALTH PROMPT</option>
+        <option value="EDUCATION PROMPT">EDUCATION PROMPT</option>
+        <option value="FINANCE">FINANCE PROMPT</option>
+        <option value="BUSINESS PROMPT">BUSINESS PROMPT</option>
+        <option value="LEGAL PROMPT">LEGAL PROMPT</option>
+        <option value="TRAVEL PROMPT">TRAVEL PROMPT</option>
+        <option value="MARKETING PROMPT">MARKETING PROMPT</option>
+        <option value="SOCIAL MEDIA PROMPT">SOCIAL MEDIA PROMPT</option>
     </select>
 </div>
 
@@ -258,8 +289,7 @@
     </div>
     <section id="resource-center">
         <div class="container">
-            <h2>Information Center</h2>
-            <p>Explore guides, tutorials, and resources to get the most out of EngineeredPrompt.</p>
+            <h2>Our Mission</h2>
             <div class="resource-list">
                 <!-- Resource 1 -->
                 <div class="resource-card">
@@ -284,12 +314,6 @@
             </div>
         </div>
     </section>
-    
-<!-- footer style1-->    
-<footer class="footer-style-1">
-   One Stop promptsol.
-</footer>
-
 <footer class="footer">
     <div class="footer-container">
       <div class="footer-section">
