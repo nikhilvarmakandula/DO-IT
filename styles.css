@@ -1,3 +1,4 @@
+
 /* Reset Styles */
 * {
     margin: 0;
@@ -46,13 +47,16 @@ header {
 nav ul {
     list-style: none;
     display: flex;
-    gap: 1.5rem;
+    gap: 10px;
 }
 nav ul li a {
-    color:#fff;
-    font-weight:500;
-    font-family:proxima-nova,sans-serif !important;
-    transition: color 0.3s;
+    color: white;
+    text-decoration: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
 }
 nav ul li a:hover {
     color: #EAEAEA;
@@ -66,17 +70,17 @@ nav ul li a:hover {
     text-align: center;
     padding: 2.5rem 5%;
     border-bottom: 5px;
+    font-family: 'Poppins', sans-serif;
 }
 .hero h1 {
     font-size: 1.5rem;
     margin-bottom: 0.75rem;
-    
 }
 .hero p {
     font-size: 1.2rem;
     max-width: 1000px;
     margin: 0 auto 1.5rem;
-    line-height: 1.8;
+    line-height: 1.6;
     text-align: left;
 
 }
@@ -96,6 +100,10 @@ nav ul li a:hover {
     transform: scale(1.05);
     background:#1d1c1c;
     color: white;
+}
+.highlight {
+    color:#99E6FF  ;
+    font-weight: bold;
 }
 
 /* Main Content */
@@ -146,7 +154,7 @@ form .form-group label {
 
 /* Styling for input, select, textarea */
 form input, form select, form textarea {
-    width: 65%; 
+    width: 100%; 
     padding: 1rem;
     font-size: 1rem;
     font-family: proxima-nova,sans-serif !important; 
@@ -175,23 +183,6 @@ form #file-upload {
     border-radius: 50px;
     border: 2px solid #ccc;
     background-color: #f9f9f9;
-}
-/* Search Section */
-.search-bar {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1rem;
-    border-radius:50px ;
-}
-.search-bar input, .search-bar select {
-    flex: 1;
-    padding: 0.75rem;
-    font-size: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 50px;
-}
-.search-bar select {
-    flex: 0.5;
 }
 table {
     width: 100%;
@@ -292,13 +283,13 @@ table th {
 .vision-section {
     background-color: #fff;
     text-align: center;
-    padding: 4rem 1rem;
+    padding: 2rem 1rem;
     margin-top: -1rem;
 }
 .vision-section p {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     color: #333;
-    max-width: 800px;
+    max-width: 914px;
     margin: 0 auto;
 }
 .vision-section b {
@@ -336,7 +327,7 @@ table th {
 
 
 .warehouse-prompt-wrapper th, .warehouse-prompt-wrapper td {
-    padding: 0.75rem;
+    padding: 0.85rem;
     border:inset;
     text-align: left;
     border: 5px solid #333; /* Border color */
@@ -631,7 +622,7 @@ textarea {
 
 #resource-center h2 {
     font-size: 2rem;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
     color: #2c3e50;
 }
 
@@ -1121,7 +1112,7 @@ th {
     justify-content: flex-end; /* Align to the right */
     gap: 0.5rem; /* Minimal gap between input and select */
     margin-bottom: 0.5rem; /* Reduced bottom margin */
-    width: 40%; /* Occupies 50% of the container width */
+    width: 50%; /* Occupies 50% of the container width */
     margin-left: auto; /* Push to the right side */
 }
 
@@ -1135,7 +1126,7 @@ th {
 }
 
 .search-bar input {
-    flex: 1.5; /* Input field takes the majority of the space within 50% */
+    flex: 0.6; /* Input field takes the majority of the space within 50% */
     text-align:left;
 }
 
@@ -1147,12 +1138,246 @@ th {
 
 .search-bar input:focus,
 .search-bar select:focus {
-    border-color: #007BFF;
+    border-color: #1d1c1c;
     outline: none;
+    flex:auto;
 }
 .search-bar input::placeholder {
         color:#333; /* Adjust the color to your preference */
         opacity: 1; /* Ensures full visibility of the placeholder */
     }
 
-    
+    /* Reset Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: proxima-nova, sans-serif !important;
+    line-height: 1.6;
+    color: #333;
+    background-color: #fff;
+}
+
+/* Prevent horizontal scrolling */
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* === Keep Table Header Simple & Clean === */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto; /* Allows dynamic column sizing */
+}
+
+/* Keep the header styling minimal */
+table th {
+    background: #335aa7 !important; /* Keep the original blue color */
+    color: white !important;
+    font-weight: 600;
+    text-align: left;
+    padding: 10px;
+    border-bottom: 2px solid #ffffff;
+    font-size: 1rem; /* Keep it readable but not oversized */
+}
+
+/* Table Cell Styling */
+table td {
+    padding: 10px;
+    text-align: left;
+    word-break: break-word; /* Allow text wrapping */
+    vertical-align: middle;
+    font-size: 1rem;
+}
+
+/* === Ensure All Columns Are Visible on Mobile (Scrollable Table) === */
+.warehouse-prompt-wrapper {
+    width: 100%;
+    overflow-x: auto; /* Allow horizontal scrolling only when needed */
+}
+
+.warehouse-prompt-wrapper table {
+    display: table;
+    width: 100%;
+    min-width: 900px; /* Ensure all columns are shown */
+}
+
+/* === Full-Width Images & Videos Inside Table === */
+.media-container {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Image and Video Full Width Display */
+.media-container img,
+.media-container video {
+    width: 100%; /* Allow full width usage */
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    object-fit: contain; /* Ensures aspect ratio is maintained */
+}
+
+/* === Responsive Table Adjustments for Mobile === */
+@media (max-width: 768px) {
+    .warehouse-prompt-wrapper {
+        overflow-x: auto; /* Enable horizontal scrolling */
+        white-space: nowrap; /* Prevent text wrapping issues */
+    }
+
+    /* Keep table fully visible */
+    .warehouse-prompt-wrapper table {
+        min-width: 900px; /* Ensure full table is displayed */
+    }
+
+    /* Keep text readable on mobile */
+    table th, table td {
+        padding: 8px;
+        font-size: 0.9rem;
+        white-space: normal;
+    }
+
+    /* Ensure search input text is visible */
+    .search-bar input {
+        color: black !important;
+        background: white;
+    }
+
+    /* Adjust column widths for better fit */
+    .prompt-purpose {
+        width: 25%;
+    }
+
+    .engineered-prompt {
+        width: 30%;
+    }
+
+    .prompt-type, .likes-column, .chatgpt-column {
+        width: 15%;
+    }
+
+    .media-column {
+        width: 20%;
+    }
+
+    /* Ensure full-width image display */
+    .media-container {
+        width: 100%;
+        height: auto;
+    }
+}
+
+/* Fix for small screens (max 480px) */
+@media (max-width: 480px) {
+    table th, table td {
+        font-size: 0.85rem;
+        padding: 8px;
+    }
+
+    /* Ensure all fields are visible */
+    .warehouse-prompt-wrapper {
+        overflow-x: auto; /* Allow scrolling if needed */
+    }
+
+    .warehouse-prompt-wrapper table {
+        min-width: 900px; /* Prevent columns from disappearing */
+    }
+
+    /* Fix for search bar */
+    .search-bar input {
+        color: black !important;
+        background: white;
+    }
+}
+/* === Keep Header Navigation Right-Aligned on All Screens === */
+header {
+    background: rgba(58, 55, 55, 0.95);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 0.5rem 5%;
+    display: flex;
+    justify-content: space-between; /* Keep logo on the left, menu on the right */
+    align-items: center;
+    width: 100%;
+}
+
+/* Logo Styling */
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+/* Navigation Styling */
+nav {
+    display: flex;
+    justify-content: flex-end; /* Align links to the right */
+    align-items: center;
+    width: 100%;
+}
+
+/* Keep Navigation Items in a Row */
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    padding: 0;
+    margin: 0;
+    justify-content: flex-end; /* Align items to the right */
+}
+
+/* Navigation Links */
+nav ul li {
+    display: inline-block;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+}
+
+/* Keep Navigation Right-Aligned on Mobile */
+@media (max-width: 768px) {
+    nav {
+        justify-content: flex-end; /* Ensures links stay aligned to the right */
+    }
+
+    nav ul {
+        display: flex !important;
+        justify-content: flex-end;
+        flex-direction: row;
+        flex-wrap: wrap; /* Allow wrapping if needed */
+        width: auto;
+    }
+
+    nav ul li {
+        display: block;
+    }
+
+    /* Remove hamburger menu if it exists */
+    .menu-toggle {
+        display: none !important;
+    }
+}
+
+/* Hover Effect */
+nav ul li a:hover {
+    color: #EAEAEA;
+}
