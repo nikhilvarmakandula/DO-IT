@@ -36,18 +36,20 @@ def get_prompt_users_collection():
 
 
 @app.route('/')
+@app.route('/')
 def home():
-    """Render the home page, display prompts, and pass login status."""
+    """Render the home page, display up to 100 prompts, and pass login status."""
     is_logged_in = session.get('logged_in', False)
 
     try:
-        prompts_ref = db.collection('PRMTFILP').get()
+        prompts_ref = db.collection('PRMTFILP').order_by("time_stamp", direction=firestore.Query.DESCENDING).limit(100).get()
         prompts = [{'id': prompt.id, **prompt.to_dict()} for prompt in prompts_ref]
     except Exception as e:
         print(f"Error fetching prompts: {e}")
         prompts = []
 
     return render_template('index.html', is_logged_in=is_logged_in, prompts=prompts)
+
 @app.route('/aboutus.html')
 def about_us():
     return render_template('aboutus.html')
@@ -57,6 +59,9 @@ def Privacypolicy():
 @app.route('/contactus.html')
 def contact_us():
     return render_template('contactus.html')
+@app.route('/premiumprompts.html')
+def premimum_prompts():
+    return render_template('premiumprompts.html')
 @app.route('/signup.html')
 def signup():
     """Render the signup page."""
